@@ -8,14 +8,38 @@ use App\Models\EventModel;
 
 class EventController extends Controller{
     public function index(){
-        $event = new EventModel;
-        $event->migrate();
-        $parser = new IcsParser;
+        $model = new EventModel;
+        $model->migrate();
+        $this->render('event/index.tpl');
+    }
+
+    public function create(){
+        $model = new EventModel;
         if(Form::validate($_FILES,['file1'])){
+            $parser = new IcsParser;
             $filename = $_FILES['file1']['tmp_name'];
+            echo "<p>$filename</p>";
             $parser->parse("$filename");
             $data = $parser->get_all_data();
-    }
+
+            foreach($data["VEVENT"] as $event){
+
+                $startDateTime = explode("T",$event["DTSTART"]);
+                $endDateTime = explode("T", $event["DTEND"]);
+
+                $title = $event["SUMMARY"];
+                $startDate = $startDateTime["0"];
+                $endDate = $endDateTime["0"];
+                $startTime = $startDateTime["1"];
+                $endTime = $endDateTime["1"];
+                $location = $event["LOCATION"];
+                $description = $event["DESCRIPTION"];
+            }
+            var_dump(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
+            // die;
+            $model = $model->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
+            $model->create();
+        }
        $this->render('event/index.tpl', $data??[]);
     }
 }

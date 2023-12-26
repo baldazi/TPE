@@ -125,8 +125,7 @@ class Model extends Db
         return $this;
     }
 
-    public function execute($sql){
-        $this->db = Db::getInstance();
-        $this->db->exec($sql);
+    protected function execute($sql){
+        $q = $this->q($sql);
     }
 }

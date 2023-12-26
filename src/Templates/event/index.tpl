@@ -4,7 +4,7 @@
 {/block}
 
 {block name="content"}
-    <form action="index.php" method="post" enctype="multipart/form-data" name="ics_frm" onsubmit="return validate();">
+    <form method="post" enctype="multipart/form-data" name="ics_frm" onsubmit="return validate();">
         <input type="hidden" name="stage" value="1" />
         <input type="file" name="file1" />
         <input type="submit" value="submit" /><br/><br/>
