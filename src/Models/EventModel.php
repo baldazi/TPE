@@ -17,7 +17,7 @@ class EventModel extends Model{
     private $sql = "
 
     -- Table structure for table `events`
-    CREATE TABLE IF NOT EXISTS `events` (
+    CREATE TABLE IF NOT EXISTS `Event` (
       `ID` INTEGER PRIMARY KEY AUTOINCREMENT,
       `StartDate` DATE NOT NULL DEFAULT '0000-00-00',
       `StartTime` TIME NOT NULL DEFAULT '00:00:00',
@@ -37,6 +37,35 @@ class EventModel extends Model{
 
         // // Dump the result using var_dump
         // var_dump($tables);
+    }
+
+    // Setters
+    public function setTitle($title) {
+      $this->title = $title;
+    }
+
+    public function setStartDate($startDate) {
+      $this->startDate = $startDate;
+    }
+
+    public function setEndDate($endDate) {
+        $this->endDate = $endDate;
+    }
+
+    public function setStartTime($startTime) {
+        $this->startTime = $startTime;
+    }
+
+    public function setEndTime($endTime) {
+        $this->endTime = $endTime;
+    }
+
+    public function setLocation($location) {
+        $this->location = $location;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
     }
 
     public function migrate(){

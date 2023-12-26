@@ -8,9 +8,11 @@ use App\Models\EventModel;
 
 class EventController extends Controller{
     public function index(){
+
         $model = new EventModel;
         $model->migrate();
-        $this->render('event/index.tpl');
+        $events = $model->findAll();
+        $this->render('event/index.tpl', compact('events'));
     }
 
     public function create(){
@@ -34,11 +36,14 @@ class EventController extends Controller{
                 $endTime = $endDateTime["1"];
                 $location = $event["LOCATION"];
                 $description = $event["DESCRIPTION"];
+
+                var_dump(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
+                // die;
+                $model = $model->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
+                var_dump($model);
+                $model->create();
+
             }
-            var_dump(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
-            // die;
-            $model = $model->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
-            $model->create();
         }
        $this->render('event/index.tpl', $data??[]);
     }

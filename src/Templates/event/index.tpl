@@ -19,18 +19,19 @@
         <td align="center" width="22%"><b>End Date</b></td>
         <td align="center" class="tbl_text"><font color="#000000"><b>Location</b></font></td>
     </tr>
-    {foreach $data as $row}
+    {var_dump($data.events)}
+    {foreach from=$data.events item=row}
         <tr>
-            <td style="padding-top:8px; padding-bottom:8px" align="center" width="5%" bgcolor="#FFFFFF">{$row.i}</td>
-            <td style="padding-top:8px; padding-bottom:8px" align="center" width="20%" bgcolor="#FFFFFF">{$row.Title}</td>
+            <td style="padding-top:8px; padding-bottom:8px" align="center" width="5%" bgcolor="#FFFFFF">{1}</td>
+            <td style="padding-top:8px; padding-bottom:8px" align="center" width="20%" bgcolor="#FFFFFF">{$row->Title}</td>
             <td style="padding-top:8px; padding-bottom:8px" align="center" width="22%" bgcolor="#FFFFFF">
-                {$row.StartDate|date_format:"%m/%d/%Y"} @ {$row.StartTime|date_format:"%I:%M %p"}
+                {$row->StartDate|date_format:"%m/%d/%Y"} @ {$row->StartTime|date_format:"%I:%M %p"}
             </td>
             <td style="padding-top:8px; padding-bottom:8px" align="center" width="22%" bgcolor="#FFFFFF">
-                {$row.EndDate|date_format:"%m/%d/%Y"} @ {$row.EndTime|date_format:"%I:%M %p"}
+                {$row->EndDate|date_format:"%m/%d/%Y"} @ {$row->EndTime|date_format:"%I:%M %p"}
             </td>
             <td width="20%" style="text-align: center; padding-top:8px; padding-bottom:8px" align="center" bgcolor="#FFFFFF">
-                {$row.Location}
+                {$row->Location}
             </td>
         </tr>
     {/foreach}

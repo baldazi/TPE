@@ -141,12 +141,14 @@ class IcsParser {
         $ical_date = str_replace('T', '', $ical_date);
         $ical_date = str_replace('Z', '', $ical_date);
 
-        preg_match('([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{0,2})([0-9]{0,2})([0-9]{0,2})', $ical_date, $date);
+        preg_match('/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{0,2})([0-9]{0,2})([0-9]{0,2})/', $ical_date, $date);
 
-        if ($date[1] <= 1970) {
+        if (isset($data) && $date[1] <= 1970) {
             $date[1] = 1971;
+
+            var_dump($date);
         }
-        return mktime($date[4], $date[5], $date[6], $date[2], $date[3], $date[1]);
+        return mktime((int)$date[4]??0, (int)$date[5]??0, (int)$date[6]??0, (int)$date[2]??0, (int)$date[3]??0, (int)$date[1]??0);
     }
 
     function ical_dt_date($key, $value) {
@@ -155,7 +157,7 @@ class IcsParser {
         $temp = explode(";", $key);
 
         if (empty($temp[1])) { // neni TZID
-            $data = str_replace('T', '', $data);
+            // $data = str_replace('T', '', $data);
             return array($key, $value);
         }
 
