@@ -30,6 +30,7 @@
    <footer>
         merci!
    </footer>
+   {block name="script"}{/block}
 </body>
 
 </html>
