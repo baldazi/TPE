@@ -8,6 +8,7 @@ class Controller{
     function render(string $fichier, array $data=[]) {
         /* instance e smarty pour effectuer le choix de rendu du template*/
         $smarty = SmartySingleton::getInstance();
+        $smarty->assign("data", $data);
         foreach($data as $key => $value)
             $smarty->assign("$key", $value);
         /* rendu */

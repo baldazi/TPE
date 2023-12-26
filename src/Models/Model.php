@@ -124,4 +124,8 @@ class Model extends Db
         }
         return $this;
     }
+
+    protected function execute($sql){
+        $q = $this->q($sql);
+    }
 }
