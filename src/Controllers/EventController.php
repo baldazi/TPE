@@ -17,10 +17,11 @@ class EventController extends Controller{
 
     public function create(){
         $model = new EventModel;
+        $events = $model->findAll();
         if(Form::validate($_FILES,['file1'])){
             $parser = new IcsParser;
             $filename = $_FILES['file1']['tmp_name'];
-            echo "<p>$filename</p>";
+           
             $parser->parse("$filename");
             $data = $parser->get_all_data();
 
@@ -36,15 +37,13 @@ class EventController extends Controller{
                 $endTime = $endDateTime["1"];
                 $location = $event["LOCATION"];
                 $description = $event["DESCRIPTION"];
-
-                var_dump(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
-                // die;
+          
                 $model = $model->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
-                var_dump($model);
+                
                 $model->create();
 
             }
         }
-       $this->render('event/index.tpl', $data??[]);
+       $this->render('event/index.tpl', compact('events'));
     }
 }
