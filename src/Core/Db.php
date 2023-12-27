@@ -15,7 +15,6 @@ class Db extends PDO{
      */
     private function __construct(){
         $_dsn = "sqlite:".__DIR__."/database.db";
-        echo $_dsn;
         try{
             parent::__construct($_dsn);
             //$this->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "self NAMES utf8");

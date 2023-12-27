@@ -19,8 +19,7 @@
         <td align="center" width="22%"><b>End Date</b></td>
         <td align="center" class="tbl_text"><font color="#000000"><b>Location</b></font></td>
     </tr>
-    {var_dump($data.events)}
-    {foreach from=$data.events item=row}
+    {foreach from=$events item=row}
         <tr>
             <td style="padding-top:8px; padding-bottom:8px" align="center" width="5%" bgcolor="#FFFFFF">{1}</td>
             <td style="padding-top:8px; padding-bottom:8px" align="center" width="20%" bgcolor="#FFFFFF">{$row->Title}</td>

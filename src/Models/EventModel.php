@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Core\Db;
-
 class EventModel extends Model{
     protected $id;
     protected $title;
@@ -31,12 +29,6 @@ class EventModel extends Model{
     ";
     public function __construct(){
         $this->table = str_replace('Model', '', str_replace(__NAMESPACE__.'\\','',__CLASS__));
-        // Query to retrieve table information
-        // $query = Db::getInstance()->query("SELECT * FROM sqlite_master WHERE type='table'");
-        // $tables = $query->fetchAll();
-
-        // // Dump the result using var_dump
-        // var_dump($tables);
     }
 
     // Setters
