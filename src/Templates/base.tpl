@@ -24,7 +24,7 @@
     <header class="container-fluid border-bottom">
         <nav class="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href=".">
+                <a class="navbar-brand" href="/">
                     <img src="/assets/img/logo.png" class="logo col-2" alt="logo">
                 </a>
                 <div class="d-flex"><i class="fa-solid fa-bars"></i></div>

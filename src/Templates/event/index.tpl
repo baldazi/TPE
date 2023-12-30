@@ -6,7 +6,15 @@
 {block name="content"}
     <div class="row">
     {********** content 1 **********}
-        <div class="col border w-250">Gestion
+        <div class="col border w-250">
+            <h2 class="bg-primary text-white text-center mx-auto">Evenement</h2>
+            <div class="list-group">
+                <li class="list-group-item active">Table</li>
+                <li class="list-group-item">Liste</li>
+                <li class="list-group-item">Calendrier</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </div>
 
         </div>
         {********** content 2 **********}

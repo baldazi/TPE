@@ -30,13 +30,13 @@ class EventController extends Controller{
                 $startDateTime = explode("T",$event["DTSTART"]);
                 $endDateTime = explode("T", $event["DTEND"]);
 
-                $title = $event["SUMMARY"];
+                $title = $event["SUMMARY"]??"";
                 $startDate = $startDateTime["0"];
                 $endDate = $endDateTime["0"];
                 $startTime = $startDateTime["1"];
                 $endTime = $endDateTime["1"];
-                $location = $event["LOCATION"];
-                $description = $event["DESCRIPTION"];
+                $location = $event["LOCATION"]??"";
+                $description = $event["DESCRIPTION"]??"";
           
                 $model = $model->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
                 
