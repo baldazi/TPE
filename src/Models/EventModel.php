@@ -11,6 +11,7 @@ class EventModel extends Model{
     protected $endTime;
     protected $location;
     protected $description;
+    protected $userID;
 
     private $sql = "
 
@@ -24,7 +25,9 @@ class EventModel extends Model{
       `Title` TEXT NOT NULL DEFAULT '',
       `Location` TEXT DEFAULT NULL,
       `Description` TEXT,
-      UNIQUE (`ID`)
+      `UserID` INTEGER,  -- Foreign key
+       FOREIGN KEY (`UserID`) REFERENCES `User`(`id`),
+       UNIQUE (`ID`)
     );
     ";
     public function __construct(){
@@ -58,6 +61,10 @@ class EventModel extends Model{
 
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+    public function setUsetID($userID) {
+      $this->userID = $userID;
     }
 
     public function migrate(){

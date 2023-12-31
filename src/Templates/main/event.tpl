@@ -1,4 +1,4 @@
-{extends file="../base.tpl"}
+
 {block name="title"}
     events
 {/block}
