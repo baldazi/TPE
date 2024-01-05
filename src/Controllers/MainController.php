@@ -36,39 +36,10 @@ class MainController extends Controller
                 exit;
             }
         }
-
-        if(Form::validate($_FILES,['file1']) || Form::validate($_POST,['file_URL'])){
-            $parser = new IcsParser;
-            $eventModel = new EventModel;
-
-            $filename = $_FILES['file1']['tmp_name']??$_POST['file_URL'];
-            $parser->parse("$filename");
-            $data = $parser->get_all_data();
-
-            foreach($data["VEVENT"] as $event){
-
-                $startDateTime = explode("T",$event["DTSTART"]);
-                $endDateTime = explode("T", $event["DTEND"]);
-
-                $title = $event["SUMMARY"]??"";
-                $startDate = $startDateTime["0"];
-                $endDate = $endDateTime["0"];
-                $startTime = $startDateTime["1"];
-                $endTime = $endDateTime["1"];
-                $location = $event["LOCATION"]??"";
-                $description = $event["DESCRIPTION"]??"";
-                $userID = $_SESSION["user"]["id"];
-          
-                $model = $eventModel->hydrate(compact("title", "startDate", "endDate", "startTime", "endTime", "location", "description"));
-                
-                $model->create();
-
-            }
-        }
         
         if(Form::validate($_SESSION, ["user"])){
             $eventModel = new EventModel;
-            $events = $eventModel->findAll();
+            $events = $eventModel->findBy(["userID"=>$_SESSION["user"]["id"]]);;
         }
 
         $this->render('main/index.tpl', isset($events)?compact("events"):[]);

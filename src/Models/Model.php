@@ -126,6 +126,6 @@ class Model extends Db
     }
 
     protected function execute($sql){
-        $q = $this->q($sql);
+        $this->q($sql);
     }
 }

@@ -47,6 +47,11 @@ class UserModel extends Model
         return $this->email;
     }
 
+    //setter
+    public function setId($id){
+        $this->id = $id;
+    }
+
     public function setPassword($pwd){
         $this->password = $pwd;
     }
