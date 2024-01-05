@@ -4,7 +4,7 @@ namespace App\Core;
 class Form{
     
     /**
-     *
+     * 
      */
     static function validate(array $form, array $champs){
         $result = true;

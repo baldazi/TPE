@@ -1,11 +1,13 @@
 {extends file="../base.tpl"}
-{block name="title"}
-    accueil
-{/block}
 
-{block name="content"}
-    <div>
-        <p class="text-center">page principal ....</p>
-        <a href="/event">go to event</a>
-    </div>
-{/block}
+
+{if isset($smarty.session.user)}
+    {block name="header-side"}
+        <button class="btn text-white">
+            <i class="fa-solid fa-power-off"></i>
+        </button>
+        {/block}
+    {include file="./event.tpl"}
+{else}
+    {include file="./login.tpl"}
+{/if}

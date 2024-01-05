@@ -11,6 +11,7 @@ class EventModel extends Model{
     protected $endTime;
     protected $location;
     protected $description;
+    protected $userID;
 
     private $sql = "
 
@@ -24,7 +25,9 @@ class EventModel extends Model{
       `Title` TEXT NOT NULL DEFAULT '',
       `Location` TEXT DEFAULT NULL,
       `Description` TEXT,
-      UNIQUE (`ID`)
+      `UserID` INTEGER,  -- Foreign key
+       FOREIGN KEY (`UserID`) REFERENCES `User`(`id`),
+       UNIQUE (`ID`)
     );
     ";
     public function __construct(){
@@ -60,6 +63,31 @@ class EventModel extends Model{
         $this->description = $description;
     }
 
+    public function setUserID($userID) {
+      $this->userID = $userID;
+    }
+
+    //queries
+    public function findAllXUser(){
+      $req = "
+        SELECT 
+            Event.ID AS EventID,
+            Event.StartDate,
+            Event.StartTime,
+            Event.EndDate,
+            Event.EndTime,
+            Event.Title,
+            Event.Location,
+            Event.Description,
+            User.id AS UserID,
+            User.pseudo,
+            User.email
+        FROM Event
+        LEFT JOIN User ON Event.UserID = User.id;
+        ";
+      $tab = $this->q($req);
+      return $tab->fetchAll();
+  }
     public function migrate(){
       $this->execute($this->sql);
     }

@@ -1,10 +1,10 @@
-{extends file="../base.tpl"}
+
 {block name="title"}
     events
 {/block}
 
 {block name="content"}
-    <div class="row">
+    <div class="row mx-1">
     {********** content 1 **********}
         <div class="col-lg-3">
             <p class="bg-primary text-white text-center mx-auto shadow mt-1 rounded">Evenement</p>
@@ -20,35 +20,39 @@
         {********** content 2 **********}
         <div class="col-lg-6 border overflow-hidden">
         <p class="alert alert-primary text-center border-0 m-1">Vous avez {$events|count} évenement à venir</p>
-            <table border="0" width="690" id="table22" class="inner_font" cellspacing="1" cellpadding="4" style="font-family:Verdana; font-size:10pt" bgcolor="#99CCFF">
-            <tr>
-                <td align="center" width="5%"><b>#</b></td>
-                <td align="center" width="20%"><b>Event Name</b></td>
-                <td align="center" width="22%"><b>Start Date</b></td>
-                <td align="center" width="22%"><b>End Date</b></td>
-                <td align="center" class="tbl_text"><font color="#000000"><b>Location</b></font></td>
-            </tr>
+            <table id="table22" class="table text-center">
+            <thead class="bg-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Lieu</th>
+                </tr>
+            </thead>
+            <tbody>
             {foreach from=$events item=row key=i}
                 <tr>
-                    <td style="padding-top:8px; padding-bottom:8px" align="center" width="5%" bgcolor="#FFFFFF">{$i+1}</td>
-                    <td style="padding-top:8px; padding-bottom:8px" align="center" width="20%" bgcolor="#FFFFFF">{$row->Title}</td>
-                    <td style="padding-top:8px; padding-bottom:8px" align="center" width="22%" bgcolor="#FFFFFF">
-                        {$row->StartDate|date_format:"%m/%d/%Y"} @ {$row->StartTime|date_format:"%I:%M %p"}
+                    <td>{$i+1}</td>
+                    <td>{$row->Title}</td>
+                    <td>
+                        {$row->StartDate|date_format:"%d/%m/%Y"} <br/> {$row->StartTime|date_format:"%H:%M"}
                     </td>
-                    <td style="padding-top:8px; padding-bottom:8px" align="center" width="22%" bgcolor="#FFFFFF">
-                        {$row->EndDate|date_format:"%m/%d/%Y"} @ {$row->EndTime|date_format:"%I:%M %p"}
+                    <td>
+                        {$row->EndDate|date_format:"%d/%y/%Y"} <br/> {$row->EndTime|date_format:"%H:%M"}
                     </td>
-                    <td width="20%" style="text-align: center; padding-top:8px; padding-bottom:8px" align="center" bgcolor="#FFFFFF">
+                    <td>
                         {$row->Location}
                     </td>
                 </tr>
             {/foreach}
+            </tbody>
             </table>
         </div>
         {********** content 3 **********}
         <div class="col-lg-3 p-1">
         <p class="bg-primary text-white text-center rounded shadow"><i class="fa-solid fa-plus"></i> Ajouter</p>
-        <form method="post">
+        <form method="post" action="/event/create">
             <input type="hidden" name="stage" value="2" />
             <div class="mb-3">
             <div class="input-group">
@@ -59,11 +63,11 @@
             </div>
         </form> 
         
-        <form method="post" enctype="multipart/form-data" name="ics_frm" onsubmit="return validate();">
+        <form method="post" enctype="multipart/form-data" name="ics_frm" onsubmit="return validate();" action="/event/create">
             <input type="hidden" name="stage" value="1" />
             <div class="mb-3">
             <div class="input-group">
-            <input type="file" name="file1"  class="form-control"/>
+            <input type="file" name="file_data"  class="form-control"/>
             <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-play"></i></button>
             </div>
         </form> 

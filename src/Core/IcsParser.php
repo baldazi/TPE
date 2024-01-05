@@ -2,54 +2,51 @@
 
 namespace App\Core;
 
-class IcsParser {
+use DateTime;
 
-    var $file;
-    var $file_text;
-    var $cal;
-    var $event_count;
-    var $todo_count;
-    var $last_key;
-    
-    function read_file($file) {
+class IcsParser
+{
+    private $fileText;
+    private $calendar;
+    private $eventCount;
+    private $todoCount;
+    private $lastKey;
+
+    public function readFile($file)
+    {
         $this->file = $file;
-        $file_text = join("", file($file)); //load file
-        $file_text = preg_replace("/[\r\n]{1,} ([:;])/", "\\1", $file_text);
-        return $file_text; // return all text
+        $this->fileText = file_get_contents($file);
+        $this->fileText = preg_replace("/[\r\n]{1,} ([:;])/", "\\1", $this->fileText);
+        return $this->fileText;
     }
 
-    function get_event_count() {
-        return $this->event_count;
-    }
+    public function parse($uri)
+    {
+        $this->calendar = [];
+        $this->eventCount = -1;
+        $this->fileText = $this->readFile($uri);
+        $lines = preg_split("/[\n]/", $this->fileText);
 
-    function get_todo_count() {
-        return $this->todo_count;
-    }
-    
-    function parse($uri) {
-        $this->cal = array(); // new empty array
+        if (stripos($lines[0], 'BEGIN:VCALENDAR') === false) {
+            return 'Error: Not a VCALENDAR file';
+        }
 
-        $this->event_count = -1;
-        $this->file_text = $this->read_file($uri);
+        $type = '';
 
-        $this->file_text = preg_split("[\n]", $this->file_text);
-        if (!stristr($this->file_text[0], 'BEGIN:VCALENDAR'))
-            return 'error not VCALENDAR';
+        foreach ($lines as $line) {
+            $line = trim($line);
 
-        foreach ($this->file_text as $text) {
+            if (!empty($line)) {
+                list($key, $value) = $this->returnKeyValue($line);
 
-            $text = trim($text);
-            if (!empty($text)) {
-                list($key, $value) = $this->retun_key_value($text);
-
-                switch ($text) {
+                switch ($line) {
                     case "BEGIN:VTODO":
-                        $this->todo_count = $this->todo_count + 1; 
+                        $this->todoCount++;
                         $type = "VTODO";
                         break;
 
                     case "BEGIN:VEVENT":
-                        $this->event_count = $this->event_count + 1; 
+                        $this->eventCount++;
                         $type = "VEVENT";
                         break;
 
@@ -57,12 +54,11 @@ class IcsParser {
                     case "BEGIN:DAYLIGHT":
                     case "BEGIN:VTIMEZONE":
                     case "BEGIN:STANDARD":
-                        $type = $value; 
+                        $type = $value;
                         break;
 
-                    case "END:VTODO": 
+                    case "END:VTODO":
                     case "END:VEVENT":
-
                     case "END:VCALENDAR":
                     case "END:DAYLIGHT":
                     case "END:VTIMEZONE":
@@ -70,95 +66,108 @@ class IcsParser {
                         $type = "VCALENDAR";
                         break;
 
-                    default: 
-                        $this->add_to_array($type, $key, $value); 
+                    default:
+                        $this->addToCalendar($type, $key, $value);
                         break;
                 }
             }
         }
-        return $this->cal;
+
+        return $this->calendar;
     }
 
+    private function addToCalendar($type, $key, $value)
+    {
+        if ($key === false) {
+            $key = $this->lastKey;
 
-    function add_to_array($type, $key, $value) {
-        if ($key == false) {
-            $key = $this->last_key;
             switch ($type) {
-                case 'VEVENT': $value = $this->cal[$type][$this->event_count][$key] . $value;
+                case 'VEVENT':
+                    $value = $this->calendar[$type][$this->eventCount][$key] . $value;
                     break;
-                case 'VTODO': $value = $this->cal[$type][$this->todo_count][$key] . $value;
+                case 'VTODO':
+                    $value = $this->calendar[$type][$this->todoCount][$key] . $value;
                     break;
             }
         }
 
-        if (($key == "DTSTAMP") or ($key == "LAST-MODIFIED") or ($key == "CREATED"))
-            $value = $this->ical_date_to_unix($value);
-        if ($key == "RRULE")
-            $value = $this->ical_rrule($value);
-        if (stristr($key, "DTSTART") or stristr($key, "DTEND")){
-            $my_arr=explode("T",$value);
-           $cdate=$my_arr[0]." ".$my_arr[1]; 
-            list($key, $cdate) = $this->ical_dt_date($key, $cdate);
+        if (in_array($key, ["DTSTAMP", "LAST-MODIFIED", "CREATED"])) {
+            $value = $this->icalDateToUnix($value);
+        }
+
+        if ($key === "RRULE") {
+            $value = $this->icalRrule($value);
+        }
+
+        if (stristr($key, "DTSTART") || stristr($key, "DTEND")) {
+            list($key, $cdate) = $this->icalDtDate($key, $this->getDateTimeFromIcal($value));
         }
 
         switch ($type) {
             case "VTODO":
-                $this->cal[$type][$this->todo_count][$key] = $value;
+                $this->calendar[$type][$this->todoCount][$key] = $value;
                 break;
 
             case "VEVENT":
-                $this->cal[$type][$this->event_count][$key] = $value;
+                $this->calendar[$type][$this->eventCount][$key] = $value;
                 break;
 
             default:
-                $this->cal[$type][$key] = $value;
+                $this->calendar[$type][$key] = $value;
                 break;
         }
-        $this->last_key = $key;
+
+        $this->lastKey = $key;
     }
 
-    function retun_key_value($text) {
-        preg_match("/([^:]+)[:]([\w\W]+)/", $text, $matches);
+    private function returnKeyValue($line)
+    {
+        preg_match("/([^:]+)[:]([\w\W]+)/", $line, $matches);
 
         if (empty($matches)) {
-            return array(false, $text);
+            return [false, $line];
         } else {
-            $matches = array_splice($matches, 1, 2);
-            return $matches;
+            return array_splice($matches, 1, 2);
         }
     }
 
-    function ical_rrule($value) {
+    private function icalRrule($value)
+    {
         $rrule = explode(';', $value);
+        $result = [];
+
         foreach ($rrule as $line) {
             $rcontent = explode('=', $line);
             $result[$rcontent[0]] = $rcontent[1];
         }
+
         return $result;
     }
 
-    function ical_date_to_unix($ical_date) {
-        $ical_date = str_replace('T', '', $ical_date);
-        $ical_date = str_replace('Z', '', $ical_date);
+    private function icalDateToUnix($icalDate)
+    {
+        if ($icalDate instanceof DateTime) {
+            $icalDate = $icalDate->format('YmdHis');
+        }
+        $icalDate = str_replace(['T', 'Z'], '', $icalDate);
 
-        preg_match('/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{0,2})([0-9]{0,2})([0-9]{0,2})/', $ical_date, $date);
+        preg_match('/(\d{4})(\d{2})(\d{2})(\d{0,2})(\d{0,2})(\d{0,2})/', $icalDate, $date);
 
         if (isset($data) && $date[1] <= 1970) {
             $date[1] = 1971;
-
-            var_dump($date);
         }
-        return mktime((int)$date[4]??0, (int)$date[5]??0, (int)$date[6]??0, (int)$date[2]??0, (int)$date[3]??0, (int)$date[1]??0);
+
+        return mktime((int)($date[4] ?? 0), (int)($date[5] ?? 0), (int)($date[6] ?? 0), (int)($date[2] ?? 0), (int)($date[3] ?? 0), (int)($date[1] ?? 0));
     }
 
-    function ical_dt_date($key, $value) {
-        $value = $this->ical_date_to_unix($value);
+    private function icalDtDate($key, $value)
+    {
+        $value = $this->icalDateToUnix($value);
 
         $temp = explode(";", $key);
 
-        if (empty($temp[1])) { // neni TZID
-            // $data = str_replace('T', '', $data);
-            return array($key, $value);
+        if (empty($temp[1])) {
+            return [$key, $value];
         }
 
         $key = $temp[0];
@@ -166,39 +175,79 @@ class IcsParser {
         $return_value[$temp[0]] = $temp[1];
         $return_value['unixtime'] = $value;
 
-        return array($key, $return_value);
+        return [$key, $return_value];
     }
 
-    function get_sort_event_list() {
-        $temp = $this->get_event_list();
+    private function getDateTimeFromIcal($icalDate)
+    {
+        return DateTime::createFromFormat('Ymd?His', $icalDate);
+    }
+
+    public function splitDateTime($dateTimeString, $dateFormat = 'Y-m-d', $timeFormat = 'H:i:s') {
+        $dateTime = DateTime::createFromFormat('Ymd\THis', $dateTimeString);
+    
+        if ($dateTime instanceof DateTime) {
+            $formattedDate = $dateTime->format($dateFormat);
+            $formattedTime = $dateTime->format($timeFormat);
+    
+            return ['date' => $formattedDate, 'time' => $formattedTime];
+        } else {
+            return null;
+        }
+    }
+
+    public function getSortEventList()
+    {
+        $temp = $this->getEventList();
         if (!empty($temp)) {
-            usort($temp, array(&$this, "ical_dtstart_compare"));
+            usort($temp, array($this, "icalDtstartCompare"));
             return $temp;
         } else {
             return false;
         }
     }
 
-    function ical_dtstart_compare($a, $b) {
+    public function icalDtstartCompare($a, $b)
+    {
         return strnatcasecmp($a['DTSTART']['unixtime'], $b['DTSTART']['unixtime']);
     }
 
-    function get_event_list() {
-        return $this->cal['VEVENT'];
+    public function getEventList()
+    {
+        return $this->calendar['VEVENT'];
     }
 
-    function get_todo_list() {
-        return $this->cal['VTODO'];
+    public function getTodoList()
+    {
+        return $this->calendar['VTODO'];
     }
 
-    function get_calender_data() {
-        return $this->cal['VCALENDAR'];
+    public function getCalendarData()
+    {
+        return $this->calendar['VCALENDAR'];
     }
 
-    function get_all_data() {
-        return $this->cal;
+    public function getAllData()
+    {
+        return $this->calendar;
     }
 
+    public function getAllEvent(){
+        $eventArray = [];
+        foreach($this->calendar["VEVENT"] as $event){
+
+            $startDateTime = $this->splitDateTime($event["DTSTART"]);
+            $endDateTime = $this->splitDateTime($event["DTEND"]);
+            $e["title"] = $event["SUMMARY"]??"";
+            $e["startDate"] = $startDateTime["date"];
+            $e["endDate"] = $endDateTime["date"];
+            $e["startTime"] = $startDateTime["time"];
+            $e["endTime"] = $endDateTime["time"];
+            $e["location"] = $event["LOCATION"]??"";
+            $e["description"] = $event["DESCRIPTION"]??"";
+            $eventArray[] = $e;
+        }
+        return $eventArray;
+    }
 }
 
-?>
