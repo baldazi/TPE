@@ -7,10 +7,10 @@ use App\Models\EventModel;
 
 class ApiController extends Controller{
 
-    public function index(){
-
+    public function index(): void
+    {
         $model = new EventModel;
         $events = $model->findAllXUser();
-        $this->json($events);
+        $this->json(data: $events);
     }
 }

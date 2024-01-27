@@ -42,7 +42,7 @@ class EventController extends Controller{
     public function user(){
         $model = new UserModel;
         $pseudo = "admin_yop";
-        $email = "admin@yopmail.com";
+        $email = "userr@yopmail.com";
         $password = md5("admin");
         $user = $model->hydrate(compact("pseudo", "email", "password"));
         $user->register();
