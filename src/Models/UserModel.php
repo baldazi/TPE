@@ -31,4 +31,8 @@ class UserModel extends Model
             return false;
         }        
     }
+
+    public function migrate(){
+        $this->execute($this->sql);
+    }
 }

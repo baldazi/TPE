@@ -117,10 +117,7 @@ class Model extends Db
     public function hydrate($data): self
     {
         foreach ($data as $key => $val) {
-            $setter = 'set' . ucfirst($key);
-            if (method_exists($this, $setter)) {
-                $this->$setter($val);
-            }
+            $this->$key = $val;
         }
         return $this;
     }
