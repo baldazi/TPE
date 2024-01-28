@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f7b65e8-bbb1-4a57-8072-ecf15efc8f37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controllers/CalendarController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/EventController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/IcsParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/IcsParser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/EventModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/EventModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/ModelBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/ModelBase.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Templates/main/event.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/Templates/main/event.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Database Script.db.sql.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "db",
@@ -57,12 +68,28 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "database.query.execution",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "RunConfigurationTargetLRU": [
+      "6edeec51-1ae9-4d28-be16-0d4479b36b3d"
+    ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Database Script.db.sql">
+    <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/Core/db.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="6edeec51-1ae9-4d28-be16-0d4479b36b3d" />
+      <method v="2" />
+    </configuration>
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/public/index.php">
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Database Script.db.sql" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -89,6 +116,7 @@
       <workItem from="1706219243557" duration="1466000" />
       <workItem from="1706383415445" duration="1449000" />
       <workItem from="1706385507644" duration="2614000" />
+      <workItem from="1706400292755" duration="11460000" />
     </task>
     <servers />
   </component>

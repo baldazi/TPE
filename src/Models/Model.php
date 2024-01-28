@@ -11,6 +11,19 @@ class Model extends Db
 
     //instance de la db
     private $db;
+    private $property = [];
+
+    public function __get(string $name):mixed
+    {
+        if (array_key_exists($name, $this->property))
+            return $this->property[$name];
+        else return "undefined";
+    }
+
+    public function __set(string $name, mixed $value):void
+    {
+        $this->property[$name] = $value;
+    }
     /**
      * CRUD
      * cette methode renvoi tous les elements
@@ -58,7 +71,7 @@ class Model extends Db
         $champs = [];
         $inter = [];
 
-        foreach ($this as $champ => $valeur) {
+        foreach ($this->property as $champ => $valeur) {
             if ($valeur !== null && $champ != 'db' && $champ != 'table') {
                 $champs[] = $champ;
                 $valeurs[] = $valeur;
@@ -75,7 +88,7 @@ class Model extends Db
     {
         $champs = [];
         $valeurs = [];
-        foreach ($model as $champ => $valeur) {
+        foreach ($model->property as $champ => $valeur) {
             if ($valeur !== null && $champ !== 'db' && $champ !== 'table') {
                 $champs[] = " $champ = ?";
                 $valeurs[] = $valeur;
@@ -122,7 +135,9 @@ class Model extends Db
         return $this;
     }
 
-    protected function execute($sql){
+    public function execute($sql){
         $this->q($sql);
     }
 }
+
+//array_fill, array_keys, array_values, array_map

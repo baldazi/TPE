@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Core\Form;
-use App\Core\IcsParser;
 use App\Models\EventModel;
 use App\Models\UserModel;
 
@@ -12,7 +11,6 @@ class MainController extends Controller
     public function index()
     {
         $usersModel = new UserModel;
-        $usersModel->migrate();
         if (Form::validate($_POST, ['login_user_pass', 'login_user_login'])) {
             $log = strip_tags($_POST['login_user_login']);
             $pass = strip_tags($_POST['login_user_pass']);
@@ -25,7 +23,7 @@ class MainController extends Controller
             }
             $user = $usersModel->hydrate($userArray);
 
-            if (md5($pass) === $user->getPassword()) {
+            if (md5($pass) === $user->password) {
                 $user->setSession();
                 unset($_SESSION['error']);
                 header('Location:.');
@@ -43,5 +41,13 @@ class MainController extends Controller
         }
 
         $this->render('main/index.tpl', isset($events)?compact("events"):[]);
+    }
+
+    public function migrate()
+    {
+        $model = new EventModel;
+        $sql = file_get_contents("../src/Core/db.sql");
+        var_dump($sql);
+        $model->execute($sql);
     }
 }

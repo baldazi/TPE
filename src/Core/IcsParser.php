@@ -227,6 +227,12 @@ class IcsParser
         return $this->calendar['VCALENDAR'];
     }
 
+    public function getName(){
+        $calendar = $this->getCalendarData();
+        $name = $calendar["X-WR-CALNAME"];
+        return trim(preg_replace('/^([^(]+)\s*\(.*/', '$1', $name));
+    }
+
     public function getAllData()
     {
         return $this->calendar;

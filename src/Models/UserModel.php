@@ -7,15 +7,6 @@ class UserModel extends Model
 
     use ModelBase;
 
-    private string $sql = "
-    CREATE TABLE IF NOT EXISTS `User` (
-        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-        `pseudo` TEXT NOT NULL,
-        `email` TEXT NOT NULL,
-        `password` TEXT NOT NULL
-    );
-    ";
-
     public function setSession(){
         $_SESSION['user']['id'] = $this->id;
         $_SESSION['user']['email'] = $this->email;
@@ -32,7 +23,7 @@ class UserModel extends Model
         }        
     }
 
-    public function migrate(){
-        $this->execute($this->sql);
+    function findSomeOne($id){
+        return $this->q("SELECT * FROM {$this->table} WHERE email=? OR pseudo=?", [$id, $id])->fetch();
     }
 }
