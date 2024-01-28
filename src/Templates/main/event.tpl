@@ -52,7 +52,7 @@
         {********** content 3 **********}
         <div class="col-lg-3 p-1">
         <p class="bg-primary text-white text-center rounded shadow"><i class="fa-solid fa-plus"></i> Ajouter</p>
-        <form method="post" action="/event/create">
+        <form method="post" action="/calendar/create">
             <input type="hidden" name="stage" value="2" />
             <div class="mb-3">
             <div class="input-group">

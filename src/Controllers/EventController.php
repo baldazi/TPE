@@ -12,7 +12,6 @@ class EventController extends Controller{
     public function index(){
 
         $model = new EventModel;
-        $model->migrate();
         $events = $model->findAll();
         $this->render('event/index.tpl', compact('events'));
     }
