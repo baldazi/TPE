@@ -1,0 +1,29 @@
+GET http://127.0.0.20:80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: PHPSESSID=d5r874aai80nmtqj7hvbv2u5fr
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-01-28T160238.200.html
+
+###
+
+GET http://127.0.0.20:80/api
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Cookie: PHPSESSID=d5r874aai80nmtqj7hvbv2u5fr
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-01-28T160233.200.json
+
+###
+
+GET http://127.0.0.20/api
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-01-28T160210.200.json
+
+###
+

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
 use App\Core\Form;
 use App\Core\IcsParser;
 use App\Models\CalendarModel;

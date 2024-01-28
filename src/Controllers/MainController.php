@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Form;
+use App\Models\CalendarModel;
 use App\Models\EventModel;
 use App\Models\UserModel;
 
@@ -37,10 +38,12 @@ class MainController extends Controller
         
         if(Form::validate($_SESSION, ["user"])){
             $eventModel = new EventModel;
-            $events = $eventModel->findBy(["userID"=>$_SESSION["user"]["id"]]);;
+            $calendarModel = new CalendarModel;
+            $events = $eventModel->findBy(["userID"=>$_SESSION["user"]["id"]]);
+            $calendars = $calendarModel->findBy(["userID"=>$_SESSION["user"]["id"]]);
         }
 
-        $this->render('main/index.tpl', isset($events)?compact("events"):[]);
+        $this->render('main/index.tpl', isset($events)?compact("events", "calendars"):[]);
     }
 
     public function migrate()

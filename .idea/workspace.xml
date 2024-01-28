@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f7b65e8-bbb1-4a57-8072-ecf15efc8f37" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/CalendarController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6edeec51-1ae9-4d28-be16-0d4479b36b3d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6edeec51-1ae9-4d28-be16-0d4479b36b3d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/EventController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/CalendarController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CalendarController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/IcsParser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/IcsParser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/EventModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/EventModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/ModelBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/ModelBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/UserModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Templates/main/event.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/Templates/main/event.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +37,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="127.0.0.20" id="9b3e1bf8-2e9a-47a4-a1f6-acb49c9d20c1" name="serve" />
+    </servers>
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -57,10 +56,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Database Script.db.sql.executor": "Run",
+    "HTTP Request.All in request.executor": "Run",
+    "PHP HTTP Request.serve.executor": "Run",
+    "PHP Web Page.display.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "db",
-    "last_opened_file_path": "C:/Users/Aziz Balde/Documents/TPE",
+    "git-widget-placeholder": "calendar",
+    "last_opened_file_path": "C:/Users/Aziz Balde/Documents/TPE/public/index.php",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,16 +77,20 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Database Script.db.sql">
+  <component name="RunManager" selected="PHP Web Page.display">
     <configuration name="db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/src/Core/db.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="6edeec51-1ae9-4d28-be16-0d4479b36b3d" />
       <method v="2" />
     </configuration>
-    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/public/index.php">
+    <configuration name="display" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="serve">
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Database Script.db.sql" />
+      <item itemvalue="PHP Web Page.display" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Database Script.db.sql" />
@@ -117,6 +123,7 @@
       <workItem from="1706383415445" duration="1449000" />
       <workItem from="1706385507644" duration="2614000" />
       <workItem from="1706400292755" duration="11460000" />
+      <workItem from="1706453502388" duration="4158000" />
     </task>
     <servers />
   </component>
