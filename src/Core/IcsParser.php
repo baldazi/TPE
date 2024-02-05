@@ -20,6 +20,11 @@ class IcsParser
         return $this->fileText;
     }
 
+    public function isEmpty()
+    {
+        return empty($this->calendar);
+    }
+
     public function parse($uri)
     {
         $this->calendar = [];
@@ -245,10 +250,10 @@ class IcsParser
             $startDateTime = $this->splitDateTime($event["DTSTART"]);
             $endDateTime = $this->splitDateTime($event["DTEND"]);
             $e["title"] = $event["SUMMARY"]??"";
-            $e["startDate"] = $startDateTime["date"];
-            $e["endDate"] = $endDateTime["date"];
-            $e["startTime"] = $startDateTime["time"];
-            $e["endTime"] = $endDateTime["time"];
+            $e["startDate"] = $startDateTime["date"]??"";
+            $e["endDate"] = $endDateTime["date"]??"";
+            $e["startTime"] = $startDateTime["time"]??"";
+            $e["endTime"] = $endDateTime["time"]??"";
             $e["location"] = $event["LOCATION"]??"";
             $e["description"] = $event["DESCRIPTION"]??"";
             $eventArray[] = $e;

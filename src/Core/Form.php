@@ -15,4 +15,8 @@ class Form{
             return $result;
         }
     }
+
+    static function isURL(string $url){
+        return filter_var($url, FILTER_VALIDATE_URL);
+    }
 }

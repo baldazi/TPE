@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `Calendar` (
     `name` TEXT NOT NULL DEFAULT 'undefined',
     `UserID` INTEGER,  -- Foreign key referencing User.id
     `Url` TEXT NOT NULL,
+    `Color` TEXT NOT NULL DEFAULT '#270389',
     FOREIGN KEY (`UserID`) REFERENCES `User`(`id`)
 );
 
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS `Event` (
     `Title` TEXT NOT NULL DEFAULT '',
     `Location` TEXT DEFAULT NULL,
     `Description` TEXT,
+    `Calendar` TEXT NOT NULL DEFAULT 'undefined',
+    `Color` TEXT NOT NULL DEFAULT '#270389',
     `UserID` INTEGER,  -- Foreign key
     `CalendarID` INTEGER,  -- Foreign key referencing Calendar.id
     FOREIGN KEY (`UserID`) REFERENCES `User`(`id`),
