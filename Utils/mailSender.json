@@ -1,0 +1,307 @@
+{
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "8cf53d67382ed06a2ddbce69fed0a874849e3eefd71b8746e4d9708185f4170f"
+    },
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "efff8c63-90a2-4608-a8c1-224849f563b9",
+        "name": "When clicking \"Test workflow\"",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -100,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "url": "http://127.0.0.21/export",
+          "options": {}
+        },
+        "id": "fff766b4-a085-483a-aca1-0a98f28f858a",
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.1,
+        "position": [
+          60,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "f969c68f-cd7b-403f-ab9f-aa3733e78778",
+                "leftValue": "={{ $json.StartTime }}",
+                "rightValue": {},
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "after"
+                }
+              },
+              {
+                "id": "9a0eb4f5-c532-4300-8db8-c053bd428c0c",
+                "leftValue": "={{ $json.StartTime }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "dateTime",
+                  "operation": "before"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "616dcf0b-751b-479c-8b60-5fcf14dac6ab",
+        "name": "Filter",
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2,
+        "position": [
+          1280,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfunction isNextWeek(date) {\n  const date_ = new Date(date);\n  const currentDate = new Date();\n  const nextWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7);\n  \n  return date_ > currentDate && date_ <= nextWeek;\n}\n\nconst list = [];\nfor (const item of $input.all()) {\n  if (!isNextWeek(item.json.StartDate))\n    list.push(item);\n}\n\nreturn list;\n"
+        },
+        "id": "378c99f6-ddc5-4c6a-9c92-c33dba16e2e4",
+        "name": "Filtre les evenement prochain",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          220,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "fieldsToSummarize": {
+            "values": [
+              {
+                "field": "EventID"
+              },
+              {
+                "aggregation": "append",
+                "field": "StartDate"
+              },
+              {
+                "aggregation": "=append",
+                "field": "StartTime"
+              },
+              {
+                "aggregation": "append",
+                "field": "EndDate"
+              },
+              {
+                "aggregation": "append",
+                "field": "Title"
+              },
+              {
+                "aggregation": "append",
+                "field": "Location"
+              },
+              {
+                "aggregation": "append",
+                "field": "Location"
+              },
+              {
+                "aggregation": "append",
+                "field": "Description"
+              },
+              {
+                "aggregation": "append",
+                "field": "EndTime"
+              }
+            ]
+          },
+          "fieldsToSplitBy": "email",
+          "options": {}
+        },
+        "id": "a13753f4-bbe8-4caf-869d-5e9e0f7e3280",
+        "name": "Summarize",
+        "type": "n8n-nodes-base.summarize",
+        "typeVersion": 1,
+        "position": [
+          400,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={\n  \"count\":{{ $json.count_EventID }},\n  \"email\": \"{{ $json.email }}\", \n   \"startDateLst\": {{ $json.appended_StartDate }},\n \"endDateLst\":{{ $json.appended_EndDate }},\n \"startTimeLst\":{{ $json.appended_StartTime }},\n\"endTimeLst\":{{ $json.appended_EndTime}},\n \"titleLst\":{{ $json.appended_Title }},\n\"descriptionLst\": {{ $json.appended_Description }},\n\"locationLst\": {{ $json.appended_Location }}\n}",
+          "include": "none",
+          "options": {}
+        },
+        "id": "07dbbce4-2e05-4e3b-88c9-0ac1d3cfdb36",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.2,
+        "position": [
+          580,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "fromEmail": "=contact@baldazi.com",
+          "toEmail": "={{ $json.email }}",
+          "subject": "Newletters",
+          "html": "={{ $json.msg }}",
+          "options": {}
+        },
+        "id": "feeeeb61-6575-4642-a4d9-df1376502911",
+        "name": "Send Email",
+        "type": "n8n-nodes-base.emailSend",
+        "typeVersion": 2.1,
+        "position": [
+          1140,
+          60
+        ],
+        "credentials": {
+          "smtp": {
+            "id": "Yfwq9kQfE5qbOHyx",
+            "name": "baldazi"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "fromEmail": "=bouzidkatia2019@gmail.com",
+          "toEmail": "={{ $json.email }}",
+          "subject": "Newletters",
+          "options": {}
+        },
+        "id": "9cb7cdd1-25d3-48cc-8957-c7bc8e6101f9",
+        "name": "Send Email1",
+        "type": "n8n-nodes-base.emailSend",
+        "typeVersion": 2.1,
+        "position": [
+          1100,
+          -160
+        ],
+        "credentials": {
+          "smtp": {
+            "id": "RgrRqsEME52pK0rq",
+            "name": "gmail"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const lst = []\nfor (const item of $input.all()) {\n  let msg = `vous avez ${item.json.count} evenement a venir <hr> <ul>`\n  for (let e of item.json.events) {\n    msg += `<li>${e.title}\n      ${e.description}\n      ${e.location},\n      ${e.startDate}\n      ${e.startTime}\n      ${e.endDate}\n      ${e.endTime}</li>`\n  }\n\n  msg += `</ul>`\n  \n  lst.push({email:item.json.email, count:item.json.count, msg})\n}\n\nreturn lst;"
+        },
+        "id": "60040b0a-4178-4192-8991-c92f7b399afb",
+        "name": "generateMsg",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          940,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst lst = []\nfor (const item of $input.all()) {\n  let events = []\n  for (let i = 0; i < item.json.count; i++) {\n    events.push({\n      title:item.json.titleLst[i],\n      description:item.json.descriptionLst[i],\n      location:item.json.locationLst[i],\n      startDate:item.json.startDateLst[i],\n      startTime:item.json.startTimeLst[i],\n      endDate:item.json.endDateLst[i],\n      endTime:item.json.endTimeLst[i]\n    })\n  }\n  lst.push({email:item.json.email, count:item.json.count, events})\n}\n\nreturn lst;"
+        },
+        "id": "51d5a9be-b045-481c-80a8-8e1da95d96be",
+        "name": "regrouperUser",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          760,
+          60
+        ]
+      }
+    ],
+    "connections": {
+      "When clicking \"Test workflow\"": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Filtre les evenement prochain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filtre les evenement prochain": {
+        "main": [
+          [
+            {
+              "node": "Summarize",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Summarize": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "regrouperUser",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "generateMsg": {
+        "main": [
+          [
+            {
+              "node": "Send Email",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "regrouperUser": {
+        "main": [
+          [
+            {
+              "node": "generateMsg",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "pinData": {}
+  }
