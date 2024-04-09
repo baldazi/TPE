@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f7b65e8-bbb1-4a57-8072-ecf15efc8f37" name="Changes" comment="">
+    <list default="true" id="0f7b65e8-bbb1-4a57-8072-ecf15efc8f37" name="Changes" comment="correction des erreurs pour linux">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/TPE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TPE.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
@@ -142,8 +142,17 @@
       <workItem from="1712149952938" duration="3411000" />
       <workItem from="1712158213601" duration="2467000" />
       <workItem from="1712589275055" duration="841000" />
-      <workItem from="1712654644714" duration="404000" />
+      <workItem from="1712654644714" duration="1193000" />
     </task>
+    <task id="LOCAL-00001" summary="correction des erreurs pour linux">
+      <option name="closed" value="true" />
+      <created>1712700488732</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712700488732</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,5 +168,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="correction des erreurs pour linux" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs pour linux" />
   </component>
 </project>
