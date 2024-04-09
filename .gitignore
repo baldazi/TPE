@@ -1,2 +1,2 @@
-src/templates_c
-src/core/database.db
+/webapp/src/templates_c/
+/webapp/src/core/database.db
