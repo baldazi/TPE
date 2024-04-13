@@ -11,7 +11,7 @@ class SmartySingleton extends Smarty{
     function __construct(){
         
         parent::__construct();
-        $this->setTemplateDir(ROOT.'/src/templates/');
+        $this->setTemplateDir(ROOT.'/src/Templates/');
         $this->setCompileDir(ROOT.'/src/templates_c/');
         $this->setConfigDir(ROOT.'/src/configs/');
         $this->setCacheDir(ROOT.'/src/cache/');

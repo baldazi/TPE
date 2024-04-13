@@ -6,7 +6,7 @@ define('ROOT', dirname(__DIR__));
 use App\Autoloader;
 use App\Core\Main;
 // On importe l'Autoloader
-require_once ROOT.'/src/Autoloader.php';
+require_once ROOT.'/src/AutoLoader.php';
 Autoloader::register();
 
 // On instancie Main
