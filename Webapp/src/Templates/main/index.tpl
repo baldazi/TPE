@@ -9,5 +9,5 @@
         {/block}
     {include file="./event.tpl"}
 {else}
-    {include file="./login.tpl"}
+    {include file="../user/login.tpl"}
 {/if}

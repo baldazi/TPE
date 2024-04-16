@@ -46,11 +46,12 @@ class MainController extends Controller
         $this->render('main/index.tpl', isset($events)?compact("events", "calendars"):[]);
     }
 
-    public function migrate()
+    public function register()
     {
-        $model = new EventModel;
-        $sql = file_get_contents("../src/Core/db.sql");
-        var_dump($sql);
-        $model->execute($sql);
+        $usersModel = new UserModel;
+
+
+        $this->render('main/register.tpl');
+
     }
 }
