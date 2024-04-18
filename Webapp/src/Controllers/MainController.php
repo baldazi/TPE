@@ -35,21 +35,60 @@ class MainController extends Controller
                 exit;
             }
         }
-        
-        if(Form::validate($_SESSION, ["user"])){
+
+        if (Form::validate($_SESSION, ["user"])) {
             $eventModel = new EventModel;
             $calendarModel = new CalendarModel;
-            $events = $eventModel->findBy(["userID"=>$_SESSION["user"]["id"]]);
-            $calendars = $calendarModel->findBy(["userID"=>$_SESSION["user"]["id"]]);
+            $events = $eventModel->findBy(["userID" => $_SESSION["user"]["id"]]);
+            $calendars = $calendarModel->findBy(["userID" => $_SESSION["user"]["id"]]);
         }
 
-        $this->render('main/index.tpl', isset($events)?compact("events", "calendars"):[]);
+        $this->render('main/index.tpl', isset($events) ? compact("events", "calendars") : []);
     }
 
     public function register()
     {
-        $usersModel = new UserModel;
+        //verifier si l'utilisateur est deja connecté
+        if (isset($_SESSION["user"])) {
+            header("location:.");
+            exit;
+        }
 
+        $userModel = new UserModel;
+
+        if (Form::validate($_POST, ['lastname', 'firstname', 'email', 'password', 'passconf'])) {
+            $email = strip_tags($_POST['email']);
+            $firstname = strip_tags($_POST['firstname']);
+            $lastname = strip_tags($_POST['lastname']);
+            $pseudo = strip_tags($_POST['userid']);
+            $password = strip_tags($_POST['password']);
+            $confirm_pwd = strip_tags($_POST['passconf']);
+            //verifier si l'email est correct
+            if (!Form::isEmail($email)) {
+                $_SESSION['error'] = 'email incorrect';
+                header('Location:register');
+                exit;
+            }
+            // verifier si un compte existe pour l'email
+            $user = $userModel->findSomeOne($email);
+
+            if ($user) {
+                $_SESSION['error'] = 'vous avez un compte';
+                header('Location:.');
+                exit;
+            }
+
+            if (strlen($password) < 6 || $password !== $confirm_pwd) {
+                $_SESSION['error'] = 'mot de passe incorrect';
+                header('Location:register');
+                exit;
+            }
+
+            $user = $userModel->hydrate(compact("firstname", "lastname", "pseudo", "email", "password"));
+            $user->register();
+            unset($_SESSION['error']);
+            header('Location:.');
+        }
 
         $this->render('main/register.tpl');
 

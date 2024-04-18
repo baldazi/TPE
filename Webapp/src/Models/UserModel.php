@@ -16,6 +16,7 @@ class UserModel extends Model
     //Registers
     function register() {
         if(!$this->findBy(['email'=>$this->email]) && !$this->findBy(['pseudo'=>$this->pseudo])){
+            $this->password = md5($this->password);
             $this->create();
             return true;
         }else{

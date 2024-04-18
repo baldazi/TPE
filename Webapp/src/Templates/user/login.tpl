@@ -17,7 +17,7 @@
                 {$smarty.session.error}
             </div>
         {/if}
-        <form method="post" action="../main">
+        <form method="post">
             <div class="mb-2">
                 <label for="userId" class="form-label">Identifiant</label>
                 <input type="text" name="login_user_login" class="form-control" id="userId"

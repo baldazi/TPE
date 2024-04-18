@@ -17,45 +17,47 @@
                 {$smarty.session.error}
             </div>
         {/if}
-        <form method="post" action="../main">
+        <form method="post">
             <div class="mb-2">
-                <label for="userId" class="form-label">Nom :</label>
-                <input type="text" name="login_user_login" class="form-control" id="userId"
-                       placeholder="entrez votre nom" required>
+                <label for="username" class="form-label required">Nom :</label>
+                <input type="text" name="lastname" class="form-control" id="username"
+                       placeholder="Entrez votre nom" required>
             </div>
 
             <div class="mb-2">
-                <label for="userId" class="form-label">Prenom :</label>
-                <input type="text" name="login_user_login" class="form-control" id="userId"
-                       placeholder="entrez votre prenom" required>
+                <label for="userfsname" class="form-label required">Prenom :</label>
+                <input type="text" name="firstname" class="form-control" id="userfsname"
+                       placeholder="Entrez votre prénom" required>
             </div>
 
             <div class="mb-2">
-                <label for="userId" class="form-label">Email :</label>
-                <input type="text" name="login_user_login" class="form-control" id="userId"
-                       placeholder="entrez votre email" required>
+                <label for="useremail" class="form-label required">Email :</label>
+                <input type="email" name="email" class="form-control" id="useremail"
+                       placeholder="Entrez votre email" required>
             </div>
 
             <div class="mb-2">
                 <label for="userId" class="form-label">Identifiant</label>
-                <input type="text" name="login_user_login" class="form-control" id="userId"
-                       placeholder="entrez votre identifiant">
+                <input type="text" name="userid" class="form-control" id="userId"
+                       placeholder="Entrez votre identifiant">
             </div>
+
             <div class="mb-2">
-                <label for="userPwd" class="form-label">Mot de passe</label>
-                <input type="password" name="login_user_pass" class="form-control" id="userPwd"
+                <label for="userPwd" class="form-label required">Mot de passe</label>
+                <input type="password" name="password" class="form-control" id="userPwd"
                        placeholder="mot de passe" required>
             </div>
 
             <div class="mb-2">
-                <label for="userPwd" class="form-label">Confirmation du mot de passe</label>
-                <input type="password" name="login_user_pass" class="form-control" id="userPwd"
+                <label for="userPwdConf" class="form-label required">Confirmation du mot de passe</label>
+                <input type="password" name="passconf" class="form-control" id="userPwdConf" onkeyup='check();'
                        placeholder="mot de passe" required>
             </div>
 
             <button type="submit" class="btn btn-primary px-5 w-100">
                 <i class="fa-solid fa-right-to-bracket"></i> Inscription
             </button>
+
             <p class="text-center">
                 Déja inscrit?
                 <a href="/" class="link-primary link-offset-2">
@@ -65,4 +67,17 @@
 
         </form>
     </div>
+{/block}
+
+{block name="script"}
+    <script>
+        var check = function() {
+            if (document.getElementById('userPwd').value ===
+                document.getElementById('userPwdConf').value) {
+                document.getElementById('userPwdConf').style.borderColor = 'green';
+            } else {
+                document.getElementById('userPwdConf').style.borderColor = 'red';
+            }
+        }
+    </script>
 {/block}

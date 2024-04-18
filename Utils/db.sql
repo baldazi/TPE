@@ -1,7 +1,9 @@
 -- Table structure for table `User`
 CREATE TABLE IF NOT EXISTS `User` (
     `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-    `pseudo` TEXT NOT NULL,
+    `firstname` TEXT NOT NULL,
+    `lastname` TEXT NOT NULL,
+    `pseudo` TEXT DEFAULT NULL,
     `email` TEXT NOT NULL,
     `password` TEXT NOT NULL
 );
