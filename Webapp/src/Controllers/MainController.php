@@ -93,4 +93,10 @@ class MainController extends Controller
         $this->render('main/register.tpl');
 
     }
+
+    public function logout()
+    {
+        UserModel::disconnect();
+        header("location:.");
+    }
 }

@@ -13,6 +13,11 @@ class UserModel extends Model
         $_SESSION['user']['pseudo'] = $this->pseudo;
     }
 
+    static function disconnect(): void
+    {
+        unset( $_SESSION['user']);
+    }
+
     //Registers
     function register() {
         if(!$this->findBy(['email'=>$this->email]) && !$this->findBy(['pseudo'=>$this->pseudo])){

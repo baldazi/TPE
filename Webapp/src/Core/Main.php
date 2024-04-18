@@ -47,9 +47,9 @@ class Main
 
 
             //cas exceptionnel ou on a pas besoin de créer un controller
-            if ($route == "Register") {
+            if ($route == "Register" || $route == "Logout") {
                 $controller = new MainController;
-                $controller->register();
+                $controller->$route();
             } elseif (class_exists($controller)) {
 
                 $controller = new $controller;

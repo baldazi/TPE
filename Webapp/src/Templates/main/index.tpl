@@ -3,9 +3,9 @@
 
 {if isset($smarty.session.user)}
     {block name="header-side"}
-        <button class="btn text-white">
+        <a class="btn text-white" href="/logout">
             <i class="fa-solid fa-power-off"></i>
-        </button>
+        </a>
         {/block}
     {include file="./event.tpl"}
 {else}
