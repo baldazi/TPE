@@ -6,6 +6,12 @@ use App\Controllers\MainController;
 
 class Main
 {
+    private function notFoundPage()
+    {
+        http_response_code(404);
+        echo "page inexistante";
+    }
+
     public function start()
     {
         session_start();
@@ -38,18 +44,27 @@ class Main
             $route = array_shift($params);
             $route = str_replace(' ', '', ucwords(str_replace('-', ' ', $route)));
             $controller = '\\App\\Controllers\\' . ucfirst($route) . 'Controller';
-            // FIXEME
-            $controller = new $controller;
 
-            $action = isset($params[0]) ? array_shift($params) : 'index';
-            if (method_exists($controller, $action)) {
-                if (isset($params[0]))
-                    call_user_func_array([$controller, $action], $params);
-                else
-                    $controller->$action();
+
+            //cas exceptionnel ou on a pas besoin de créer un controller
+            if ($route == "Register" || $route == "Logout") {
+                $controller = new MainController;
+                $controller->$route();
+            } elseif (class_exists($controller)) {
+
+                $controller = new $controller;
+
+                $action = isset($params[0]) ? array_shift($params) : 'index';
+                if (method_exists($controller, $action)) {
+                    if (isset($params[0]))
+                        call_user_func_array([$controller, $action], $params);
+                    else
+                        $controller->$action();
+                } else {
+                    $this->notFoundPage();
+                }
             } else {
-                http_response_code(404);
-                echo "page inexistante";
+                $this->notFoundPage();
             }
         } else {
             //on instancie le controller par defaut
@@ -58,4 +73,3 @@ class Main
         }
     }
 }
-//TODO filter_var , _get, _set

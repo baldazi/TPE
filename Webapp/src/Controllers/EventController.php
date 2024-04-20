@@ -40,10 +40,12 @@ class EventController extends Controller{
 
     public function user(){
         $model = new UserModel;
-        $pseudo = "admin_yop";
-        $email = "userr@yopmail.com";
-        $password = md5("admin");
-        $user = $model->hydrate(compact("pseudo", "email", "password"));
+        $pseudo = "admin";
+        $email = "user@yopmail.com";
+        $password = "admin";
+        $firstname = "admin";
+        $lastname = "admin";
+        $user = $model->hydrate(compact("pseudo", "email", "password", "firstname", "lastname"));
         $user->register();
         header("Location: /");
     }
