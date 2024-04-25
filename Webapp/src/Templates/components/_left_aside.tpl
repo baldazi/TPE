@@ -7,5 +7,7 @@
         {include file="./left_aside/profile_panel.tpl"}
         {*-- searchbar --*}
         {include file="./left_aside/search_bar.tpl"}
+        {*-- sidebar menu: : style can be found in sidebar.less --*}
+        {include file="./left_aside/left_menu.tpl"}
     </section>
 </aside>
