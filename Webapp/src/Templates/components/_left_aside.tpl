@@ -5,5 +5,7 @@
     <section class="sidebar">
         {*-- Sidebar user panel TODO: redefinir les classes css--*}
         {include file="./left_aside/profile_panel.tpl"}
+        {*-- searchbar --*}
+        {include file="./left_aside/search_bar.tpl"}
     </section>
 </aside>
