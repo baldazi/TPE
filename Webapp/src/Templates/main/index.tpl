@@ -11,11 +11,7 @@
     {block name="content"}
         {** Right side column. Contains the navbar and content of the page **}
         <main class="content-wrapper">
-            {include file="../components/_left_aside.tpl"}
-            {** main section header **}
-            {include file="../components/_main_header.tpl"}
-            {** main section content **}
-            {include file="../components/_main_content.tpl"}
+
         </main>
     {/block}
     {block name="script"}
