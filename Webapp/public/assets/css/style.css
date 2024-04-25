@@ -51,23 +51,12 @@ body{
 }
 
 /***********from gfg************/
-.gfg {
-    height: 50px;
-    width: 50px;
-
-}
-
-.mynav {
-    color: #fff;
-}
-
 .mynav li a {
     color: #fff;
     text-decoration: none;
     width: 100%;
     display: block;
-    border-radius: 5px;
-    padding: 8px 5px;
+    padding: 8px 4px;
 }
 
 .mynav li a.active {
@@ -104,6 +93,11 @@ body{
 .local-gray-text{
     font-size: 15px;
     color: #555555;
+}
+
+.local-side-img{
+    width: 45px;
+    height: 45px;
 }
 
 .navbar-nav > .user-menu .user-image {
@@ -168,6 +162,36 @@ body{
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header > p > small {
     display: block;
     font-size: 12px;
+}
+.user-panel > .info {
+    font-weight: 600;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+} /*TODO: redefinir les classes css*/
+.user-panel > .info > p {
+    margin-bottom: 9px;
+}
+.user-panel > .info > a {
+    text-decoration: none;
+    padding-right: 5px;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: normal;
+}
+.user-panel > .info > a > .fa,
+.user-panel > .info > a > .ion,
+.user-panel > .info > a > .glyphicon {
+    margin-right: 3px;
+}
+.sidebar-menu .treeview-menu > li > a {
+    padding: 5px 5px 5px 15px;
+    display: block;
+    font-size: 14px;
+}
+.sidebar-menu .treeview-menu > li > a:hover{
+    background: transparent;
+    color: #ffffff;
 }
 /** bootstrap tweaks*/
 .navbar {padding: 0}

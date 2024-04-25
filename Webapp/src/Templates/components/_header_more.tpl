@@ -1,7 +1,7 @@
 {*-- main Sidebar toggle button--*}
 <a href="#" class="nav-link sidebar-toggle me-auto" role="button" data-bs-toggle="offcanvas"
-   data-bs-target="#offcanvasExample"
-   aria-controls="offcanvasExample">
+   data-bs-target="#leftSidebar"
+   aria-controls="leftSidebar">
     <i class="fa-solid fa-bars"></i>
 </a>
 {* profile *}
@@ -21,7 +21,7 @@
                 <!-- inner menu: contains the actual data -->
                 <ul class="list-group local-mw-300">
                     <li class="list-group-item list-group-item-action list-group-item-light"><!-- Task item -->
-                        <a href="#" class="local-dropdown-item" style="background: rgba(173,141,13,0.31)">
+                        <a href="#" class="local-dropdown-item" style="background: #ad8d0d4f">
                             <p class="d-flex mt-2 align-items-center">
                                 <span class="me-auto local-gray-text">Vacances</span>
                                 <span class="ms-auto local-lightgray-text">12/07/2024</span>
@@ -29,7 +29,7 @@
                         </a>
                     </li><!-- end task item -->
                     <li class="list-group-item list-group-item-action list-group-item-light"><!-- Task item -->
-                        <a href="#" class="local-dropdown-item" style="background: rgba(152,13,173,0.31)">
+                        <a href="#" class="local-dropdown-item" style="background: #980dad4f">
                             <p class="d-flex mt-2 align-items-center">
                                 <span class="me-auto local-gray-text">RDV</span>
                                 <span class="ms-auto local-lightgray-text">02/08/2024</span>
@@ -37,7 +37,7 @@
                         </a>
                     </li><!-- end task item -->
                     <li class="list-group-item list-group-item-action list-group-item-light"><!-- Task item -->
-                        <a href="#" class="local-dropdown-item" style="background: #0d6aad50">
+                        <a href="#" class="local-dropdown-item" style="background: #0d6aad4f">
                             <p class="d-flex mt-2 align-items-center">
                                 <span class="me-auto local-gray-text">Anniversaire</span>
                                 <span class="ms-auto local-lightgray-text">21/06/2024</span>

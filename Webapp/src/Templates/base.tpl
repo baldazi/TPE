@@ -27,7 +27,7 @@
         <div class="container-fluid">
             {* header logo *}
             <a class="navbar-brand px-5 logo" href=".">
-                <img src="/assets/img/logo_2.png" alt="logo">
+                <img src="/assets/img/logo.png" alt="logo">
             </a>
         {block name="header-more"}
             <div class="d-flex">
