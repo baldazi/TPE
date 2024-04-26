@@ -6,6 +6,10 @@
                 <i class="fa-solid fa-gauge"></i> Accueil
             </a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
+        {block name="page-indicator-more"}
+            <li class="breadcrumb-item active" aria-current="page">
+                {block name="page-indicator-id"}Tableau de bord{/block}
+            </li>
+        {/block}
     </ol>
 </nav>

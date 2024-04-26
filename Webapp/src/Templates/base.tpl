@@ -12,8 +12,8 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     {block name="style"}{/block}
-    {*    <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>*}
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>
+    <link href="/assets/css/skins.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
@@ -29,17 +29,33 @@
             <a class="navbar-brand px-5 logo" href=".">
                 <img src="/assets/img/logo.png" alt="logo">
             </a>
-        {block name="header-more"}
-            <div class="d-flex">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        {/block}
+            {block name="header-more"}
+                {if isset($smarty.session.user)}
+                    {include file="./components/_header_more.tpl"}
+                {else}
+                    <div class="d-flex">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                {/if}
+            {/block}
         </div>
     </nav>
 
 </header>
 {*********** Main template block*****************}
-{block name="content"}{/block}
+{block name="content"}
+    {if isset($smarty.session.user)}
+        <main class="container-fluid p-0 d-flex h-100 min-vh-100">
+            {include file="./components/_left_aside.tpl"}
+
+            {block name="page-content"}
+
+            {/block}
+        </main>
+    {else}
+        {include file="./user/login.tpl"}
+    {/if}
+{/block}
 {*********************************}
 <footer class="main-footer">
     <div class="pull-right hidden-xs">

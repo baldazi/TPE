@@ -103,6 +103,10 @@ body{
     text-decoration: none;
 }
 
+/*.local-calendar .month tr { line-height: 20px;}*/
+.local-calendar .month td{ padding: 5px 0;}
+.local-calendar .month tr .local-event-column { min-height: 20px; }
+
 .navbar-nav > .user-menu .user-image {
     float: left;
     width: 25px;
