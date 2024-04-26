@@ -12,6 +12,7 @@
         {** Right side column. Contains the navbar and content of the page **}
         <main class="container-fluid p-0 d-flex h-100 min-vh-100">
             {include file="../components/_left_aside.tpl"}
+            {include file="../components/_main_content.tpl"}
         </main>
     {/block}
     {block name="script"}

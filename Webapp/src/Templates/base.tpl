@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="skin-blue">
+<body class="skin-purple">
 <header class="main-header">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="container-fluid">
