@@ -17,9 +17,9 @@
     </li>
     {* 3. Calendrier *}
     <li>
-        <a href="#calendar">
+        <a href="/calendar">
             <i class="fa-regular fa-calendar-days"></i>
-            <span>Calendar</span>
+            <span>Calendriers</span>
         </a>
     </li>
     {* 4. Soubscription *}

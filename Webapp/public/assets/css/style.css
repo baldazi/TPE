@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap);
 @import url("bgcolors.css");
+@import url("txtcolors.css");
 *{
     box-sizing: border-box;
     margin: 0;
@@ -277,6 +278,28 @@ body{
     .small-box p {
         font-size: 12px;
     }
+}
+/*
+ * Plugin: Full Calendar
+ * ---------------------
+ */
+.fc-color-picker >a span {
+    font-size: 30px;
+    margin-right: 5px;
+    line-height: 30px;
+}
+
+.fc-color-picker >a i{
+    -webkit-transition: -webkit-transform linear 0.3s;
+    -moz-transition: -moz-transform linear 0.3s;
+    -o-transition: -o-transform linear 0.3s;
+    transition: transform linear 0.3s;
+}
+.fc-color-picker >a i:hover {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    transform: rotate(30deg);
 }
 /** bootstrap tweaks*/
 .navbar {padding: 0}

@@ -9,6 +9,16 @@ use App\Models\EventModel;
 
 class CalendarController extends Controller
 {
+    public function index(): void
+    {
+        if (Form::validate($_SESSION, ["user"])) {
+            $calendarModel = new CalendarModel;
+            $calendars = $calendarModel->findBy(["userID" => $_SESSION["user"]["id"]]);
+            $this->render('calendar/index.tpl', compact( "calendars"));
+        }else{
+            $this->render('main/index.tpl' );
+        }
+    }
     public function create(): void
     {
         $model = new CalendarModel;
