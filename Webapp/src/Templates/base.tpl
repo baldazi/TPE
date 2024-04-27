@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="container-fluid">
             {* header logo *}
-            <a class="navbar-brand px-5 logo" href=".">
+            <a class="navbar-brand px-5 logo" href="/">
                 <img src="/assets/img/logo.png" alt="logo">
             </a>
             {block name="header-more"}

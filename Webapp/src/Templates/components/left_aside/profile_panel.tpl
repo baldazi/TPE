@@ -5,6 +5,6 @@
     </div>
     <div class="info">
         <p>Alexander Pierce</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> En ligne</a>
+        <a href="/setting/profil"><i class="fa fa-circle text-success"></i> En ligne</a>
     </div>
 </div>

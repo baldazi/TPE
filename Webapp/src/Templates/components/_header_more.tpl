@@ -69,7 +69,7 @@
             </li>
             <!-- Menu Footer-->
             <li class="d-flex justify-content-between p-2">
-                <a href="/user/profile" class="btn btn-primary btn-sm">Profile</a>
+                <a href="/setting/profil" class="btn btn-primary btn-sm">Profile</a>
                 <a href="/main/logout" class="btn btn-secondary btn-sm">Deconnexion</a>
             </li>
         </ul>

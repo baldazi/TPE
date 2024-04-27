@@ -3,7 +3,7 @@
     <li class="header">NAVIGATION</li>
     {* 1. Tableau de bord *}
     <li>
-        <a href=".">
+        <a href="/">
             <i class="fa-solid fa-gauge"></i>
             <span>Tableau de bord</span>
         </a>
