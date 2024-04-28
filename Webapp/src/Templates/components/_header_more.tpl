@@ -47,7 +47,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#" class="text-center dropdown-item local-gray-text">Voir tout</a>
+                <a href="/event" class="text-center dropdown-item local-gray-text">Voir tout</a>
             </li>
         </ul>
     </li>

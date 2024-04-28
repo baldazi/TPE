@@ -38,7 +38,7 @@
     </li>
     {* 5. Paramètres *}
     <li>
-        <a href="#settings">
+        <a href="/setting">
             <i class="fa-solid fa-gear"></i>
             <span>Paramètres</span>
         </a>
@@ -47,14 +47,14 @@
     <li class="header">APPLICATION</li>
     {* 6. Apparence *}
     <li>
-        <a href="pages/calendar.html">
+        <a href="/setting/theme">
             <i class="fa-solid fa-display"></i>
             <span>Theme</span>
         </a>
     </li>
     {* 7. Aide *}
     <li>
-        <a href="pages/calendar.html">
+        <a href="/main/apropos">
             <i class="fa-solid fa-circle-info"></i>
             <span>Aide</span>
         </a>
