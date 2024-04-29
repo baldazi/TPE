@@ -57,12 +57,13 @@
     {/if}
 {/block}
 {*********************************}
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 2.0
+<footer class="main-footer border-top border-2 p-2">
+    <div class="text-center">
+        <b>Version</b> 1.0
+        <strong>Copyright &copy; 2024</strong>. proposé par <a href="https://www.litislab.fr/">litislab</a>.
+        Tous droits reservé.
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
