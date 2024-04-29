@@ -1,25 +1,17 @@
 @import url(https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap);
+@import url("bgcolors.css");
+@import url("txtcolors.css");
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.logo{
-    filter: brightness(0) invert(1);
-}
-
 body{
     font-family: sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: aliceblue;
 }
-
-header{
-    color: #fff;
-    background-color: #2b0b82;
-}  
 
 .main-showcase{
     background-color: #270389;
@@ -48,7 +40,271 @@ header{
     width: 250px;
 }
 
+/* color */
+.header-nav{
+    background-color: #270389;
+    color: #333;
+}
 .required:after {
     content:" *";
     color: red;
 }
+
+/***********from gfg************/
+.mynav li a {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    padding: 8px 4px;
+}
+
+.mynav li a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mynav li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mynav li a i {
+    width: 25px;
+    text-align: center;
+}
+
+.notification-badge {
+    background-color: rgba(255, 255, 255, 0.7);
+    float: right;
+    color: #222;
+    font-size: 14px;
+    padding: 0px 8px;
+    border-radius: 2px;
+}
+/***********from template***************/
+.local-lightgray-text{
+    font-size: 9px;
+    color: #666666;
+}
+
+.local-mw-300{
+    min-width: 300px;
+}
+
+.local-gray-text{
+    font-size: 15px;
+    color: #555555;
+}
+
+.local-side-img{
+    width: 45px;
+    height: 45px;
+}
+
+.local-link{
+    text-decoration: none;
+}
+
+/*.local-calendar .month tr { line-height: 20px;}*/
+.local-calendar .month td{ padding: 5px 0;}
+.local-calendar .month tr .local-event-column { min-height: 20px; }
+
+.navbar-nav > .user-menu .user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > .user-menu .user-image {
+        float: none;
+        margin-right: 0;
+        margin-top: -8px;
+        line-height: 10px;
+    }
+}
+
+.local-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--bs-dropdown-item-border-radius,0);
+}
+
+.sidebar-toggle {
+    padding: 9px;
+}
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+    min-width: 300px;
+}
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+    height: 175px;
+    padding: 10px;
+    text-align: center;
+}
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > img {
+    z-index: 5;
+    height: 90px;
+    width: 90px;
+    border: 3px solid;
+    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > p {
+    z-index: 5;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 17px;
+    margin-top: 10px;
+}
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > p > small {
+    display: block;
+    font-size: 12px;
+}
+.user-panel > .info {
+    font-weight: 600;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+} /*TODO: redefinir les classes css*/
+.user-panel > .info > p {
+    margin-bottom: 9px;
+}
+.user-panel > .info > a{
+    text-decoration: none;
+    padding-right: 5px;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: normal;
+}
+.user-panel > .info > a > .fa,
+.user-panel > .info > a > .ion,
+.user-panel > .info > a > .glyphicon {
+    margin-right: 3px;
+}
+.sidebar-menu .treeview-menu > li > a {
+    padding: 5px 5px 5px 15px;
+    display: block;
+    font-size: 14px;
+}
+.sidebar-menu .treeview-menu > li > a:hover{
+    background: transparent;
+    color: #ffffff;
+}
+/*
+ * Component: Small Box
+ * --------------------
+ */
+.small-box {
+    border-radius: 2px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.small-box > .inner {
+    padding: 10px;
+}
+.small-box > .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+.small-box > .small-box-footer:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+}
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+.small-box p {
+    font-size: 15px;
+}
+.small-box p > small {
+    display: block;
+    color: #f9f9f9;
+    font-size: 13px;
+    margin-top: 5px;
+}
+.small-box h3,
+.small-box p {
+    z-index: 5;
+}
+.small-box .icon {
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 0;
+    font-size: 90px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.small-box:hover {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+.small-box:hover .icon {
+    font-size: 95px;
+}
+@media (max-width: 767px) {
+    .small-box {
+        text-align: center;
+    }
+    .small-box .icon {
+        display: none;
+    }
+    .small-box p {
+        font-size: 12px;
+    }
+}
+/*
+ * Plugin: Full Calendar
+ * ---------------------
+ */
+.fc-color-picker >a span {
+    font-size: 30px;
+    margin-right: 5px;
+    line-height: 30px;
+}
+
+.fc-color-picker >a i{
+    -webkit-transition: -webkit-transform linear 0.3s;
+    -moz-transition: -moz-transform linear 0.3s;
+    -o-transition: -o-transform linear 0.3s;
+    transition: transform linear 0.3s;
+}
+.fc-color-picker >a i:hover {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+/** bootstrap tweaks*/
+.navbar {padding: 0}
+.list-group-item {padding: 0}
+.container-fluid{padding-left: 0}
+.navbar-brand{margin-right: 0}
+.dropdown-menu{padding: 0; border-radius: initial}
+.list-group-item:first-child, .list-group-item:last-child{border-radius: initial}

@@ -99,4 +99,9 @@ class MainController extends Controller
         UserModel::disconnect();
         header("location:.");
     }
+
+    public function apropos()
+    {
+        $this->render("main/apropos.tpl");
+    }
 }

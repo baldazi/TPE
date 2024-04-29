@@ -1,13 +1,7 @@
 {extends file="../base.tpl"}
 
+{block name="title"}Accueil A Pierce!{/block}
 
-{if isset($smarty.session.user)}
-    {block name="header-side"}
-        <a class="btn text-white" href="/logout">
-            <i class="fa-solid fa-power-off"></i>
-        </a>
-        {/block}
-    {include file="./event.tpl"}
-{else}
-    {include file="../user/login.tpl"}
-{/if}
+{block name="page-content"}
+    {include file="../components/_main_content.tpl"}
+{/block}
