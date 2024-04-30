@@ -97,10 +97,10 @@ CREATE TABLE IF NOT EXISTS `Event`
 -- Structure de la table `UserEvent` pour stocker les relations entre les utilisateurs et les événements
 CREATE TABLE IF NOT EXISTS `UserEvent`
 (
-    `UserID`  INTEGER,                                -- ID de l'utilisateur
-    `EventID` INTEGER,                                -- ID de l'événement
-    PRIMARY KEY (`UserID`, `EventID`),                -- Clé primaire composée des ID utilisateur et événement
-    FOREIGN KEY (`UserID`) REFERENCES `User` (`id`),  -- Contrainte de clé étrangère faisant référence à l'ID de l'utilisateur
-    FOREIGN KEY (`EventID`) REFERENCES `Event` (`id`) -- Contrainte de clé étrangère faisant référence à l'ID de l'événement
+    `userID`  INTEGER,                                -- ID de l'utilisateur
+    `eventID` INTEGER,                                -- ID de l'événement
+    PRIMARY KEY (`userID`, `eventID`),                -- Clé primaire composée des ID utilisateur et événement
+    FOREIGN KEY (`userID`) REFERENCES `User` (`id`),  -- Contrainte de clé étrangère faisant référence à l'ID de l'utilisateur
+    FOREIGN KEY (`eventID`) REFERENCES `Event` (`id`) -- Contrainte de clé étrangère faisant référence à l'ID de l'événement
 );
 

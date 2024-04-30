@@ -6,28 +6,35 @@ use App\Core\Form;
 use App\Models\CalendarModel;
 use App\Models\EventModel;
 use App\Models\UserModel;
+use App\Models\UserThemeModel;
 
 class MainController extends Controller
 {
     public function index()
     {
-        $usersModel = new UserModel;
         if (Form::validate($_POST, ['login_user_pass', 'login_user_login'])) {
-            $log = strip_tags($_POST['login_user_login']);
-            $pass = strip_tags($_POST['login_user_pass']);
-            $userArray = $usersModel->findSomeOne($log);
+            $usersModel = new UserModel;
+            $calendarModel = new CalendarModel;
+
+            $login = strip_tags($_POST['login_user_login']);
+            $password = strip_tags($_POST['login_user_pass']);
+            $userArray = $usersModel->findSomeOne($login);
 
             if (!$userArray) {
                 $_SESSION['error'] = 'identifient invalide';
-                header('Location:.');
+                header('Location:/');
                 exit;
             }
             $user = $usersModel->hydrate($userArray);
 
-            if (md5($pass) === $user->password) {
-                $user->setSession();
+            if (md5($password) === $user->password) {
                 unset($_SESSION['error']);
-                header('Location:.');
+                $calendars = $calendarModel->findFor($user->id);
+                $nbCalendar = count($calendars);
+                $skin = UserThemeModel::getThemes()[$user->skin];
+                $user->setSession(compact("skin","nbCalendar", "calendars"));
+                //var_dump($_SESSION["user"]);exit;
+                header('Location:/');
                 exit;
             } else {
                 $_SESSION['error'] = 'mot de passe incorrecte';
@@ -38,12 +45,10 @@ class MainController extends Controller
 
         if (Form::validate($_SESSION, ["user"])) {
             $eventModel = new EventModel;
-            $calendarModel = new CalendarModel;
-            $events = $eventModel->findBy(["userID" => $_SESSION["user"]["id"]]);
-            $calendars = $calendarModel->findBy(["userID" => $_SESSION["user"]["id"]]);
+            $events = $eventModel->findFor($_SESSION["user"]["id"]);
         }
 
-        $this->render('main/index.tpl', isset($events) ? compact("events", "calendars") : []);
+        $this->render('main/index.tpl', isset($events) ? compact("events") : []);
     }
 
     public function register()

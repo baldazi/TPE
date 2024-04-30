@@ -19,15 +19,15 @@
                         {$i+1}
                         <i class="fa-solid fa-circle" style="color: {{$row->Color}};"></i>
                     </th>
-                    <td>{$row->Title}</td>
+                    <td>{$row->title}</td>
                     <td>
-                        {$row->StartDate|date_format:"%d/%m/%Y"} <br/> {$row->StartTime|date_format:"%H:%M"}
+                        {$row->startDate|date_format:"%d/%m/%Y"} <br/> {$row->startTime|date_format:"%H:%M"}
                     </td>
                     <td>
-                        {$row->EndDate|date_format:"%d/%y/%Y"} <br/> {$row->EndTime|date_format:"%H:%M"}
+                        {$row->endDate|date_format:"%d/%y/%Y"} <br/> {$row->endTime|date_format:"%H:%M"}
                     </td>
                     <td>
-                        {$row->Location}
+                        {$row->location}
                     </td>
                 </tr>
             {/foreach}

@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="skin-purple">
+<body class="skin-{$smarty.session.user.skin|default:"purple"}">
 <header class="main-header">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="container-fluid">
