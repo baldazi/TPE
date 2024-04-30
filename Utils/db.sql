@@ -25,14 +25,15 @@ CREATE TABLE IF NOT EXISTS `User`
     `email`     TEXT    NOT NULL,                         -- Adresse e-mail de l'utilisateur
     `password`  TEXT    NOT NULL,                         -- Mot de passe de l'utilisateur
     `themeID`   INTEGER NOT NULL DEFAULT 1,               -- Clé étrangère référençant userTheme.id
+    `createdAt`   TIMESTAMP        DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`themeID`) REFERENCES `UserTheme` (`id`) -- Contrainte de clé étrangère
 );
 
 -- Structure de la table `ColorPalette` pour stocker les valeurs hexadécimales des couleurs
 CREATE TABLE IF NOT EXISTS `ColorPalette`
 (
-    `id`        INTEGER PRIMARY KEY AUTOINCREMENT,
-    `name`      TEXT NOT NULL, -- Nom de la couleur
+    `id`       INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name`     TEXT NOT NULL, -- Nom de la couleur
     `hexValue` TEXT NOT NULL  -- Valeur hexadécimale de la couleur
 );
 
@@ -53,17 +54,16 @@ VALUES ('red', '#dd4b39'),        -- Rouge
        ('orange', '#ff851b'),     -- Orange
        ('fuchsia', '#f012be'),    -- Fuchsia
        ('purple', '#605ca8'),     -- Violet
-       ('maroon', '#d81b60')      -- Bordeaux
+       ('maroon', '#d81b60') -- Bordeaux
 ;
 
 -- Structure de la table `Calendar` pour stocker les calendriers avec leur couleur associée
 CREATE TABLE IF NOT EXISTS `Calendar`
 (
     `id`      INTEGER PRIMARY KEY AUTOINCREMENT,
-    `name`    TEXT    NOT NULL DEFAULT 'undefined',          -- Nom du calendrier
-    `url`     TEXT    NOT NULL,                              -- URL du calendrier
-    `colorID` INTEGER NOT NULL,                              -- Clé étrangère référençant colorPalette.id
-    FOREIGN KEY (`colorID`) REFERENCES `ColorPalette` (`id`) -- Contrainte de clé étrangère
+    `name`    TEXT NOT NULL DEFAULT 'undefined', -- Nom du calendrier
+    `url`     TEXT NOT NULL,                     -- URL du calendrier
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table structure for table `userCalendar`
@@ -71,9 +71,12 @@ CREATE TABLE IF NOT EXISTS `UserCalendar`
 (
     `userID`     INTEGER,
     `calendarID` INTEGER,
+    `colorID`    INTEGER NOT NULL,                           -- Clé étrangère référençant colorPalette.id
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`userID`, `calendarID`),
     FOREIGN KEY (`userID`) REFERENCES `User` (`id`),
-    FOREIGN KEY (`calendarID`) REFERENCES `Calendar` (`id`)
+    FOREIGN KEY (`calendarID`) REFERENCES `Calendar` (`id`),
+    FOREIGN KEY (`colorID`) REFERENCES `ColorPalette` (`id`) -- Contrainte de clé étrangère
 );
 
 -- Structure de la table `Event` pour stocker les événements avec leur couleur et leur calendrier associés
@@ -89,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `Event`
     `description` TEXT,                                       -- Description de l'événement
     `colorID`     INTEGER NOT NULL,                           -- Clé étrangère référençant colorPalette.id
     `calendarID`  INTEGER NOT NULL,                           -- Clé étrangère référençant calendar.id
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`colorID`) REFERENCES `ColorPalette` (`id`), -- Contrainte de clé étrangère
     FOREIGN KEY (`calendarID`) REFERENCES `Calendar` (`id`),  -- Contrainte de clé étrangère
     UNIQUE (`id`)                                             -- Contrainte d'unicité
@@ -99,8 +103,10 @@ CREATE TABLE IF NOT EXISTS `UserEvent`
 (
     `userID`  INTEGER,                                -- ID de l'utilisateur
     `eventID` INTEGER,                                -- ID de l'événement
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`userID`, `eventID`),                -- Clé primaire composée des ID utilisateur et événement
     FOREIGN KEY (`userID`) REFERENCES `User` (`id`),  -- Contrainte de clé étrangère faisant référence à l'ID de l'utilisateur
     FOREIGN KEY (`eventID`) REFERENCES `Event` (`id`) -- Contrainte de clé étrangère faisant référence à l'ID de l'événement
 );
+
 

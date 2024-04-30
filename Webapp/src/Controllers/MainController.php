@@ -31,9 +31,8 @@ class MainController extends Controller
                 unset($_SESSION['error']);
                 $calendars = $calendarModel->findFor($user->id);
                 $nbCalendar = count($calendars);
-                $skin = UserThemeModel::getThemes()[$user->skin];
+                $skin = $user->skin;
                 $user->setSession(compact("skin","nbCalendar", "calendars"));
-                //var_dump($_SESSION["user"]);exit;
                 header('Location:/');
                 exit;
             } else {

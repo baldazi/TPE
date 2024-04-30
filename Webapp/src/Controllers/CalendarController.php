@@ -63,23 +63,23 @@ class CalendarController extends Controller
                     exit;
                 } else {
                     //ajouté l'utilisateur à la liste des abonnées du calendrier
-                    $userCalendarModel->hydrate(compact("userID", "calendarID"));
+                    $userCalendarModel->hydrate(compact("userID", "colorID",  "calendarID"));
                     $userCalendarModel->create();
                     //ajouté tous les evenement du calendrié à la liste d'evenement de l'utilisateur
                     $eventList = $calendarModel->findEvent($calendarID);
                     foreach ($eventList as $event) {
-                        $eventID = $event["id"];
+                        $eventID = $event->id;
                         $userEventModel->hydrate(compact("userID", "eventID"));
                         $userEventModel->create();
                     }
                 }
             } else {
                 //creer le calendrier
-                $calendarModel->hydrate(compact("name", "colorID", "url"));
+                $calendarModel->hydrate(compact("name",  "url"));
                 $calendarModel->create();
                 $calendarID = Db::getInstance()->lastInsertId();
                 //ajouté l'utilisateur à la liste des abonnées du calendrier après creation
-                $userCalendarModel->hydrate(compact("userID", "calendarID"));
+                $userCalendarModel->hydrate(compact("userID", "colorID", "calendarID"));
                 $userCalendarModel->create();
                 //ajouter les evenement a la liste globale d'evenement puis celle de l'utilisateur
                 $data = $parser->getAllEvent();
@@ -100,6 +100,6 @@ class CalendarController extends Controller
             $nbCalendar = count($calendars);
             UserModel::updateSession(compact("nbCalendar", "calendars"));
         }
-        header("Location:/");
+        header("Location:.");
     }
 }

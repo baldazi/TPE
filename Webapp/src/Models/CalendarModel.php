@@ -14,7 +14,7 @@ class CalendarModel extends Model
      */
     public function findFor($userId)
     {
-        $query = "SELECT Calendar.*, COUNT(Event.id) AS nbEvenements
+        $query = "SELECT Calendar.*, UserCalendar.colorID, COUNT(Event.id) AS nbEvenements
               FROM {$this->table}
               LEFT JOIN Event ON Calendar.id = Event.calendarID
               JOIN UserCalendar ON Calendar.id = UserCalendar.calendarID

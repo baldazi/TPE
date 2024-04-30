@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\UserThemeModel;
+
 class SettingController extends Controller{
     public function index()
     {
@@ -14,7 +16,8 @@ class SettingController extends Controller{
 
     public function theme()
     {
-        $this->render("setting/theme.tpl");
+        $themes = UserThemeModel::getColors();
+        $this->render("setting/theme.tpl", compact('themes'));
     }
 
 }

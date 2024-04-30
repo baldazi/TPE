@@ -4,11 +4,11 @@
   </span>
 
     <h5 class="card-header place p-0">
-        <span class="placeholder w-100 bg-purple h-100"></span>
+        <span class="placeholder w-100 bg-{$skin} h-100"></span>
     </h5>
     <div class="row g-0">
         <div class="col-md-4">
-            <p class="card-text plac h-100">
+            <p class="card-text h-100">
                 <span class="placeholder w-100 h-100"></span>
             </p>
         </div>

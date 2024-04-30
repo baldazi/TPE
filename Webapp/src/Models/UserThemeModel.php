@@ -23,4 +23,16 @@ class UserThemeModel
             6 => self::SKIN_YELLOW
         ];
     }
+
+    public static function getColors()
+    {
+        return [
+            1 => "purple",
+            2 => "blue",
+            3 => "yellow",
+            4 => "green",
+            5 => "red",
+            6 => "black",
+        ];
+    }
 }
