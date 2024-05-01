@@ -51,4 +51,28 @@ class CalendarModel extends Model
         $result = $this->q($query, [$userId])->fetchAll();
         return $result['nb_calendriers'];
     }
+
+    /**
+     * Incrémente le nombre d'abonnés d'un calendrier.
+     *
+     * @param int $id L'identifiant du calendrier
+     * @return void
+     */
+    public function incSubscribers($id)
+    {
+        $query = "UPDATE {$this->table} SET subscribers = subscribers + 1 WHERE id = ?";
+        $this->q($query, [$id]);
+    }
+
+    /**
+     * Décrémente le nombre d'abonnés d'un calendrier.
+     *
+     * @param int $id L'identifiant du calendrier
+     * @return void
+     */
+    public function decSubscribers($id)
+    {
+        $query = "UPDATE {$this->table} SET subscribers = subscribers - 1 WHERE id = ?";
+        $this->q($query, [$id]);
+    }
 }

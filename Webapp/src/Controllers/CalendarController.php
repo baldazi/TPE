@@ -19,7 +19,7 @@ class CalendarController extends Controller
         if (Form::validate($_SESSION, ["user"])) {
             //$calendarModel = new CalendarModel;
             //$calendars = $calendarModel->findBy(["userID" => $_SESSION["user"]["id"]]);
-            $calendars = $_SESSION["user"]["calendars"];
+            $calendars = $_SESSION["user"]["calendars"]??[];
             $colorPalette = ColorPaletteModel::getColorNames();
             $this->render('calendar/index.tpl', compact("calendars", "colorPalette"));
         } else {
@@ -43,12 +43,13 @@ class CalendarController extends Controller
                 exit;
             }
 
+            $parser->parse("$url");
+
             /*if ($parser->isEmpty()) {
                 //todo
                 echo "lien invalid";
                 exit;
             }*/
-            $parser->parse("$url");
 
             $userID = $_SESSION["user"]["id"];
             $colorID = $_POST['color_id'];
@@ -63,42 +64,44 @@ class CalendarController extends Controller
                     exit;
                 } else {
                     //ajouté l'utilisateur à la liste des abonnées du calendrier
-                    $userCalendarModel->hydrate(compact("userID", "colorID",  "calendarID"));
+                    $userCalendarModel->hydrate(compact("userID", "colorID", "calendarID"));
                     $userCalendarModel->create();
+                    //augmenter le nombre d'abonné du calendrier
+                    $calendarModel->incSubscribers($calendarID);
                     //ajouté tous les evenement du calendrié à la liste d'evenement de l'utilisateur
                     $eventList = $calendarModel->findEvent($calendarID);
                     foreach ($eventList as $event) {
                         $eventID = $event->id;
-                        $userEventModel->hydrate(compact("userID", "eventID"));
+                        $userEventModel->hydrate(compact("userID", "eventID", "colorID"));
                         $userEventModel->create();
                     }
                 }
             } else {
                 //creer le calendrier
-                $calendarModel->hydrate(compact("name",  "url"));
+                $calendarModel->hydrate(compact("name", "url"));
                 $calendarModel->create();
                 $calendarID = Db::getInstance()->lastInsertId();
                 //ajouté l'utilisateur à la liste des abonnées du calendrier après creation
                 $userCalendarModel->hydrate(compact("userID", "colorID", "calendarID"));
                 $userCalendarModel->create();
+                //pas besoin d'augmenter le nombre d'abonné du calendrier
                 //ajouter les evenement a la liste globale d'evenement puis celle de l'utilisateur
                 $data = $parser->getAllEvent();
                 foreach ($data as $event) {
                     $event["calendarID"] = $calendarID;
-                    $event["colorID"] = $colorID;
                     $eventModel = $eventModel->hydrate($event);
                     $eventModel->create();
                     //liste de l'utilisateur
                     $eventID = Db::getInstance()->lastInsertId();
-                    $userEventModel->hydrate(compact("eventID", "userID"));
+                    $userEventModel->hydrate(compact("eventID", "userID", "colorID"));
                     $userEventModel->create();
                 }
             }
 
             //mettre a jour la session
             $calendars = $calendarModel->findFor($userID);
-            $nbCalendar = count($calendars);
-            UserModel::updateSession(compact("nbCalendar", "calendars"));
+            $nbCalendars = count($calendars);
+            UserModel::updateSession(compact("nbCalendars", "calendars"));
         }
         header("Location:.");
     }

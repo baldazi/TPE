@@ -66,7 +66,6 @@
 
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/assets/scripts/app.js"></script>
 {block name="script"}{/block}
 

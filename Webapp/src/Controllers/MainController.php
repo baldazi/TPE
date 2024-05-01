@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Form;
 use App\Models\CalendarModel;
+use App\Models\ColorPaletteModel;
 use App\Models\EventModel;
 use App\Models\UserModel;
 use App\Models\UserThemeModel;
@@ -30,9 +31,9 @@ class MainController extends Controller
             if (md5($password) === $user->password) {
                 unset($_SESSION['error']);
                 $calendars = $calendarModel->findFor($user->id);
-                $nbCalendar = count($calendars);
-                $skin = $user->skin;
-                $user->setSession(compact("skin","nbCalendar", "calendars"));
+                $sessionVars = ["calendars"=>$calendars ,"nbCalendars" => count($calendars),
+                    "skin" => $user->skin, "avatarID" => $user->avatarID];
+                $user->setSession($sessionVars);
                 header('Location:/');
                 exit;
             } else {
@@ -45,9 +46,10 @@ class MainController extends Controller
         if (Form::validate($_SESSION, ["user"])) {
             $eventModel = new EventModel;
             $events = $eventModel->findFor($_SESSION["user"]["id"]);
+            $colorPalette = ColorPaletteModel::getColorNames();
         }
 
-        $this->render('main/index.tpl', isset($events) ? compact("events") : []);
+        $this->render('main/index.tpl', isset($events) ? compact("events", "colorPalette") : []);
     }
 
     public function register()

@@ -10,24 +10,26 @@ class EventModel extends Model
     public function findAllXUser()
     {
         $req = "
-        SELECT 
-            Event.ID AS EventID,
-            Event.StartDate,
-            Event.StartTime,
-            Event.EndDate,
-            Event.EndTime,
-            Event.Title,
-            Event.Location,
-            Event.Description,
-            User.id AS UserID,
-            User.pseudo,
-            User.email
-        FROM Event
-        LEFT JOIN User ON Event.UserID = User.id;
-        ";
+            SELECT 
+                Event.id AS eventID,
+                Event.startDate,
+                Event.startTime,
+                Event.endDate,
+                Event.endTime,
+                Event.title,
+                Event.location,
+                Event.description,
+                User.id AS UserID,
+                User.pseudo,
+                User.email
+            FROM Event
+            LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
+            LEFT JOIN User ON UserEvent.userID = User.id;
+            ";
         $tab = $this->q($req);
         return $tab->fetchAll();
     }
+
 
     /**
      * Méthode pour récupérer les événements avec le nom du calendrier de provenance
@@ -39,7 +41,7 @@ class EventModel extends Model
     public function findFor($userId)
 
     {
-        $query = "SELECT Event.*, Calendar.name AS calendar
+        $query = "SELECT Event.*, UserEvent.colorID, Calendar.name AS calendar
               FROM {$this->table}
               JOIN Calendar ON Event.calendarID = Calendar.id
               JOIN UserEvent ON Event.id = UserEvent.eventID
