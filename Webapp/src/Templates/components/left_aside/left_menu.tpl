@@ -28,7 +28,7 @@
            aria-controls="collapseSoubscribe">
             <i class="fa-solid fa-square-rss"></i>
             <span>Soubscription</span>
-            <span class="badge text-bg-danger float-end me-3">3</span>
+            <span class="badge text-bg-danger float-end me-3">{$smarty.session.user.nbCalendars}</span>
         </a>
         <ul class="treeview-menu collapse" id="collapseSoubscribe">
             <li><a href="#calendar"><i class="fa-regular fa-circle" style="color:#ad8d0d"></i>Vacances</a></li>

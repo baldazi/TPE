@@ -4,15 +4,8 @@
     <h4 class="text-light-blue">Apparences</h4>
     <hr>
     <div class="d-flex flex-wrap justify-content-center gap-3">
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
-        {include file="./setting_content/skin_picker.tpl"}
+        {foreach from=$themes item=skin key=i}
+            {include file="./setting_content/skin_picker.tpl" skin={$skin} id={$i}}
+        {/foreach}
     </div>
 </div>

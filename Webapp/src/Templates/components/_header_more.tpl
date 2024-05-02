@@ -56,14 +56,14 @@
     <li class="nav-item dropdown user user-menu">
         <a href="#" class="nav-link" data-bs-toggle="dropdown" id="headerDropdownProfile">
             <img src="/assets/img/avatar/1.png" class="user-image" alt="User Image"/>
-            <span class="hidden-xs">A Pierce</span>
+            <span class="hidden-xs">{substr($smarty.session.user.firstname,0,1)} {$smarty.session.user.lastname}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="headerDropdownProfile">
             <!-- User image -->
             <li class="user-header local-dropdown-item">
                 <img src="/assets/img/avatar/1.png" class="rounded-circle" alt="User Image"/>
                 <p>
-                    <b>Alexander Pierce</b>
+                    <b>{$smarty.session.user.firstname} {$smarty.session.user.lastname}</b>
                     <small>Member depuis Nov. 2012</small>
                 </p>
             </li>
