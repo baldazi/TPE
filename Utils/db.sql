@@ -82,11 +82,11 @@ VALUES ('red', '#dd4b39'),        -- Rouge
 -- Structure de la table `Calendar` pour stocker les calendriers avec leur couleur associée
 CREATE TABLE IF NOT EXISTS `Calendar`
 (
-    `id`        INTEGER PRIMARY KEY AUTOINCREMENT,
-    `name`      TEXT NOT NULL DEFAULT 'undefined', -- Nom du calendrier
-    `url`       TEXT NOT NULL,                     -- URL du calendrier
-    `subscribers` INTEGER NOT NULL DEFAULT 1,   -- Nombre d'abonnés avec une valeur par défaut de 1
-    `createdAt` TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+    `id`          INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name`        TEXT    NOT NULL DEFAULT 'undefined', -- Nom du calendrier
+    `url`         TEXT    NOT NULL,                     -- URL du calendrier
+    `subscribers` INTEGER NOT NULL DEFAULT 1,           -- Nombre d'abonnés avec une valeur par défaut de 1
+    `createdAt`   TIMESTAMP        DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table structure for table `userCalendar`
@@ -131,5 +131,17 @@ CREATE TABLE IF NOT EXISTS `UserEvent`
     FOREIGN KEY (`userID`) REFERENCES `User` (`id`),          -- Contrainte de clé étrangère faisant référence à l'ID de l'utilisateur
     FOREIGN KEY (`eventID`) REFERENCES `Event` (`id`)         -- Contrainte de clé étrangère faisant référence à l'ID de l'événement
 );
+
+--
+CREATE TABLE IF NOT EXISTS `Newsletter`
+(
+    `id`      INTEGER PRIMARY KEY AUTOINCREMENT,
+    `uuid` TEXT,
+    `email`   TEXT,
+    `content` TEXT,
+    `userID`  INTEGER,
+    FOREIGN KEY (`userID`) REFERENCES `User` (`id`) -- Contrainte de clé étrangère faisant référence à l'ID de l'utilisateur
+);
+
 
 
