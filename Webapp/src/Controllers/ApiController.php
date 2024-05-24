@@ -18,6 +18,13 @@ class ApiController extends Controller
         $this->json(data: $events);
     }
 
+    public function incoming()
+    {
+        $model = new EventModel;
+        $events = $model->findAllXUserNextWeek();
+        $this->json(data: $events);
+    }
+
     public function calendars()
     {
         $model = new CalendarModel;
@@ -50,5 +57,20 @@ class ApiController extends Controller
         $newsletterModel->hydrate($mailData);
         $newsletterModel->create();
         $this->json($mailData);
+    }
+
+    public function take()
+    {
+        $parser = new IcsParser;
+        $parser->parse("https://agenda.litislab.fr/remote.php/dav/public-calendars/4yPWJq2CkeAadCwz?export");
+        $this->json($parser->getEventList());
+    }
+
+    public function checkCalendar(){
+        $parser = new IcsParser;
+        $getData = $this->getPost();
+        $parser->parse($getData["url"]);
+        $getData["events"] = $parser->getEventList();
+        $this->json($getData);
     }
 }

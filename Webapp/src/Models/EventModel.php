@@ -10,22 +10,46 @@ class EventModel extends Model
     public function findAllXUser()
     {
         $req = "
-            SELECT 
-                Event.id AS eventID,
-                Event.startDate,
-                Event.startTime,
-                Event.endDate,
-                Event.endTime,
-                Event.title,
-                Event.location,
-                Event.description,
-                User.id AS UserID,
-                User.pseudo,
-                User.email
-            FROM Event
-            LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
-            LEFT JOIN User ON UserEvent.userID = User.id;
-            ";
+        SELECT 
+            Event.id AS eventID,
+            Event.startDateTime,
+            Event.title,
+            Event.location,
+            Event.description,
+            User.id AS userID,
+            User.pseudo,
+            User.email
+        FROM Event
+        LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
+        LEFT JOIN User ON UserEvent.userID = User.id;
+        ";
+
+        $tab = $this->q($req);
+        return $tab->fetchAll();
+    }
+
+    public function findAllXUserNextWeek()
+    {
+        $req = "
+        SELECT 
+            Event.id AS eventID,
+            Event.startDateTime,
+            Event.title,
+            Event.location,
+            Event.description,
+            User.id AS userID,
+            User.pseudo,
+            User.email
+        FROM Event
+        LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
+        LEFT JOIN User ON UserEvent.userID = User.id
+        WHERE 
+            (substr(Event.startDateTime, 1, 10) >= DATE('now', '+1 day') 
+            AND substr(Event.startDateTime, 1, 10) < DATE('now', '+8 days'))
+        OR
+            (substr(Event.startDateTime, 1, 8) >= strftime('%Y%m%d', DATE('now', '+1 day')) 
+            AND substr(Event.startDateTime, 1, 8) < strftime('%Y%m%d', DATE('now', '+8 days')));
+    ";
         $tab = $this->q($req);
         return $tab->fetchAll();
     }

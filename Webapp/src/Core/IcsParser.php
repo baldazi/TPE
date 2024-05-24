@@ -249,11 +249,12 @@ class IcsParser
             $e["uid"] = $event["UID"];
             $e["startDateTime"] = $event["DTSTART"]??"";
             $e["endDateTime"] = $event["DTEND"]??"";
-            $e["title"] = $event["SUMMARY"]??"";
+            $e["title"] = $event["SUMMARY"];
             $e["location"] = $event["LOCATION"]??"";
+            $e["status"] = $event["STATUS"];
             $e["description"] = $event["DESCRIPTION"]??"";
-            $e["created"] = $event["CREATED"]??"";
-            $e["lastModified"] = $event["LAST-MODIFIED"]??"";
+            $e["created"] = $event["CREATED"];
+            $e["lastModified"] = $event["LAST-MODIFIED"];
             $eventArray[] = $e;
         }
         return $eventArray;
