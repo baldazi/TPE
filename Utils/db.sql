@@ -105,18 +105,19 @@ CREATE TABLE IF NOT EXISTS `UserCalendar`
 -- Structure de la table `Event` pour stocker les événements avec leur couleur et leur calendrier associés
 CREATE TABLE IF NOT EXISTS `Event`
 (
-    `id`          INTEGER PRIMARY KEY AUTOINCREMENT,
-    `startDate`   DATE    NOT NULL DEFAULT '0000-00-00',     -- Date de début de l'événement
-    `startTime`   TIME    NOT NULL DEFAULT '00:00:00',       -- Heure de début de l'événement
-    `endDate`     DATE    NOT NULL DEFAULT '0000-00-00',     -- Date de fin de l'événement
-    `endTime`     TIME    NOT NULL DEFAULT '00:00:00',       -- Heure de fin de l'événement
-    `title`       TEXT    NOT NULL DEFAULT '',               -- Titre de l'événement
-    `location`    TEXT             DEFAULT NULL,             -- Lieu de l'événement
-    `description` TEXT,                                      -- Description de l'événement
-    `calendarID`  INTEGER NOT NULL,                          -- Clé étrangère référençant calendar.id
-    `createdAt`   TIMESTAMP        DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`calendarID`) REFERENCES `Calendar` (`id`), -- Contrainte de clé étrangère
-    UNIQUE (`id`)                                            -- Contrainte d'unicité
+    `id`            INTEGER PRIMARY KEY AUTOINCREMENT,
+    `uid`           TEXT    NOT NULL,                      -- Identifiant unique de l'événement
+    `startDateTime` TEXT NOT NULL,                     -- Date et heure de début de l'événement
+    `endDateTime`   TEXT NOT NULL,                     -- Date et heure de fin de l'événement
+    `title`         TEXT    NOT NULL DEFAULT '',           -- Titre de l'événement
+    `location`      TEXT    DEFAULT NULL,                  -- Lieu de l'événement
+    `description`   TEXT,                                  -- Description de l'événement
+    `created`       DATETIME DEFAULT CURRENT_TIMESTAMP,    -- Date et heure de création de l'événement
+    `lastModified`  DATETIME DEFAULT CURRENT_TIMESTAMP,    -- Date et heure de la dernière modification de l'événement
+    `status`        TEXT    DEFAULT 'CONFIRMED',           -- Statut de l'événement (ex: CONFIRMED, TENTATIVE, CANCELLED)
+    `calendarID`    INTEGER NOT NULL,                      -- Clé étrangère référençant calendar.id
+    `createdAt`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Date de création dans la base de données
+    FOREIGN KEY (`calendarID`) REFERENCES `Calendar` (`id`) -- Contrainte de clé étrangère
 );
 
 -- Structure de la table `UserEvent` pour stocker les relations entre les utilisateurs et les événements
