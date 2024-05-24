@@ -9,7 +9,7 @@ use App\Models\CalendarModel;
 use App\Models\ColorPaletteModel;
 use App\Models\EventModel;
 use App\Models\UserCalendarModel;
-use App\Models\NewsletterModel;
+use App\Models\UserEventModel;
 use App\Models\UserModel;
 
 class CalendarController extends Controller
@@ -32,7 +32,7 @@ class CalendarController extends Controller
         $calendarModel = new CalendarModel;
         $userCalendarModel = new UserCalendarModel;
         $eventModel = new EventModel;
-        $userEventModel = new NewsletterModel;
+        $userEventModel = new UserEventModel;
         if (Form::validate($_POST, ['file_URL', 'color_id'])) {
             $parser = new IcsParser;
             $url = $_POST['file_URL'];
@@ -43,13 +43,11 @@ class CalendarController extends Controller
                 exit;
             }
 
-            $parser->parse("$url");
-
-            /*if ($parser->isEmpty()) {
+            if (!$parser->parse("$url")) {
                 //todo
                 echo "lien invalid";
                 exit;
-            }*/
+            }
 
             $userID = $_SESSION["user"]["id"];
             $colorID = $_POST['color_id'];
