@@ -38,7 +38,7 @@ class Model extends Db
      * passé en parametre
      * @param array $criteres
      */
-    public function findBy(array $criteres)
+    public function findBy(array $criteres, ?bool $oneRow = null)
     {
         $champs = [];
         $valeurs = [];
@@ -49,7 +49,7 @@ class Model extends Db
         $lst_champs = implode('AND', $champs);
         $sql = "SELECT * FROM $this->table WHERE $lst_champs";
         $tab = $this->q($sql, $valeurs);
-        return $tab->fetchAll();
+        return $oneRow?$tab->fetch():$tab->fetchAll();
     }
 
     /**
@@ -84,15 +84,13 @@ class Model extends Db
         $this->q($sql, $valeurs);
     }
 
-    public function update(int $id, Model $model): void
+    public function update(int $id, array $model): void
     {
         $champs = [];
         $valeurs = [];
-        foreach ($model->property as $champ => $valeur) {
-            if ($valeur !== null && $champ !== 'db' && $champ !== 'table') {
+        foreach ($model as $champ => $valeur) {
                 $champs[] = " $champ = ?";
                 $valeurs[] = $valeur;
-            }
         }
         $valeurs[] = $id;
         $lst_champs = implode(', ', $champs);
