@@ -1,0 +1,432 @@
+{
+  "name": "newsletter",
+  "nodes": [
+    {
+      "parameters": {
+        "html": "<tr>\n<td class=\"pb40\" style=\"padding-bottom:10px;\">\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<td class=\"event-separator\" style=\"padding-bottom:10px; border-bottom:1px solid #ffffff;\">\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<!-- Date de l'evenement -->\n<th width=\"60\" style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;\">\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<td class=\"date\" style=\"color:#000000; font-family:'Raleway', Arial,sans-serif; font-size:12px; line-height:16px; text-align:left; padding-bottom:6px;\">\n[month]\n</td>\n</tr>\n<tr>\n<td class=\"day\" style=\"color:#1e52bd; font-family:'Raleway', Arial,sans-serif; font-size:20px; line-height:25px; text-align:left; font-weight:bold;\">\n[day]\n</td>\n</tr>\n</table>\n</th>\n<!-- gap-->\n<th class=\"column-empty\" width=\"10\" style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; direction:ltr;\">\n</th>\n\n<!-- Intitulé de l'evenement -->\n<th style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;\">\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<td class=\"h5-black black\" style=\"font-family:'Raleway', Arial,sans-serif; font-size:14px; line-height:18px; text-align:left; padding-bottom:10px; text-transform:uppercase; font-weight:bold; color:#000000;\">\n[title]\n</td>\n</tr>\n<tr>\n<td class=\"text black\"\nstyle=\"font-family:'Raleway', Arial,sans-serif; font-size:14px; line-height:18px; text-align:left; color:#000000;\">\n<span>[sHour][eHour]</span>&nbsp;&nbsp;&nbsp;\n<span style=\"font-weight:bold; margin-left:auto;\">[location]</span>\n</td>\n</tr>\n</table>\n</th>\n<!-- gap -->\n<th class=\"column-empty\"\nwidth=\"10\"\nstyle=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; direction:ltr;\">\n</th>\n</table>\n</td>\n</tr>\n</table>\n</td>\n</tr>"
+      },
+      "id": "6c089183-e796-452f-83be-ca50537ea88c",
+      "name": "EventList",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1900,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  delete item.json.eList\n}\n\nreturn $input.all();"
+      },
+      "id": "479561b3-64f6-4eca-be6e-154c87b426f1",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html\n        PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"fr\">\n\n<head>\n    <!--[if gte mso 9]>\n    <xml>\n        <o:OfficeDocumentSettings>\n            <o:AllowPNG/>\n            <o:PixelsPerInch>96</o:PixelsPerInch>\n        </o:OfficeDocumentSettings>\n    </xml>\n    <![endif]-->\n    <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\"/>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n    <meta name=\"format-detection\" content=\"date=no\"/>\n    <meta name=\"format-detection\" content=\"address=no\"/>\n    <meta name=\"format-detection\" content=\"telephone=no\"/>\n    <meta name=\"x-apple-disable-message-reformatting\"/>\n    <!--[if !mso]><!-->\n    <link\n            href=\"https://fonts.googleapis.com/css?family=Kreon:400,700|Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i|Roboto:400,400i,700,700i\"\n            rel=\"stylesheet\"/>\n    <!--<![endif]-->\n    <title>Email Template</title>\n    <!--[if gte mso 9]>\n    <style type=\"text/css\" media=\"all\">\n        sup {\n            font-size: 100% !important;\n        }\n    </style>\n    <![endif]-->\n\n\n    <style type=\"text/css\" media=\"screen\">\n        /* Linked Styles */\n        body {\n            padding: 0 !important;\n            margin: 0 !important;\n            display: block !important;\n            min-width: 100% !important;\n            width: 100% !important;\n            background: #1e52bd;\n            -webkit-text-size-adjust: none\n        }\n\n        a {\n            color: #000001;\n            text-decoration: none\n        }\n\n        p {\n            padding: 0 !important;\n            margin: 0 !important\n        }\n\n        img {\n            -ms-interpolation-mode: bicubic;\n            /* Allow smoother rendering of resized image in Internet Explorer */\n        }\n\n        .text-footer2 a {\n            color: #ffffff;\n        }\n\n        /* Mobile styles */\n        @media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {\n            .mobile-shell {\n                width: 99% !important;\n                min-width: 99% !important;\n            }\n\n            .m-left {\n                text-align: left !important;\n                margin-right: auto !important;\n            }\n\n            .center {\n                margin: 0 auto !important;\n            }\n\n            .td {\n                width: 100% !important;\n                min-width: 100% !important;\n            }\n\n            .p0-15 {\n                padding: 0 15px !important;\n            }\n\n            .p30-15 {\n                padding: 30px 15px !important;\n            }\n\n            .p30-15-0 {\n                padding: 30px 15px 0 15px !important;\n            }\n\n\n            .text-footer {\n                text-align: center !important;\n            }\n\n            .fluid-img img {\n                width: 100% !important;\n                max-width: 100% !important;\n                height: auto !important;\n            }\n\n            .column-empty {\n                padding-bottom: 15px !important;\n            }\n\n        }\n    </style>\n</head>\n\n<body class=\"body\"\n      style=\"padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#1e52bd; -webkit-text-size-adjust:none;\">\n<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#333333\" style=\"min-height: 100vh;\">\n    <tr>\n        <td style=\"padding:10px;\"></td>\n    </tr>\n    <tr>\n        <td align=\"center\" valign=\"top\">\n            <!-- Main -->\n            <table width=\"650\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"mobile-shell\">\n\n                <tr>\n                    <td class=\"td\"\n                        style=\"width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;\">\n                        <!-- Header -->\n                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                            <!-- Logo -->\n                            <tr>\n\n                                <td bgcolor=\"#ffffff\" class=\"img-center\"\n                                    style=\"padding: 2px; border-radius: 10px 10px 0px 0px; font-size:0pt; line-height:0pt; text-align:center;\">\n                                    <a href=\"#\" target=\"_blank\">\n                                        <img src=\"https://litislab.fr/assets/apps/litislab/logo2.png\" width=\"160\"\n                                             height=\"68\" editable=\"true\" border=\"0\" alt=\"\"/>\n                                    </a>\n                                </td>\n\n                            </tr>\n                            <!-- END Logo -->\n                            <!-- Title -->\n                            <tr>\n                                <td class=\"text-nav-white\" bgcolor=\"#1e52bd\"\n                                    style=\"color:#ffffff; font-family:'Roboto', Arial, sans-serif; font-size:12px; line-height:22px; text-align:center; text-transform:uppercase; padding:12px 0px; border: 2px solid #ffffff;\">\n                                    <span class=\"link-white\" style=\"color:#ffffff; text-decoration:none;\">Evenement à venir</span>\n                                </td>\n                            </tr>\n                            <!-- END Title -->\n                        </table>\n                        <!-- END Header -->\n\n                        <repeater>\n                            <!-- Incomming detail -->\n                            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#ebebeb\">\n\n                                <tr>\n                                    <td class=\"p30-15-0\" style=\"padding: 50px 30px 0px;\" bgcolor=\"#ffffff\">\n                                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                            <tr>\n                                                <td class=\"text-center\"\n                                                    style=\"color:#5d5c5c; font-family:'Raleway', Arial,sans-serif; font-size:14px; line-height:22px; text-align:center; padding-bottom:22px;\">\n                                                    <!-------------------------------------------------- TODO: utiliser chatgpt -->\n                                                    {{ $json.summary }}\n                                                </td>\n                                            </tr>\n                                        </table>\n                                    </td>\n                                </tr>\n                            </table>\n                            <!-- END Incomming detail -->\n\n                            <!-- Event List -->\n                            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                <tr>\n                                    <td>\n                                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"\n                                               bgcolor=\"#dde8fd\">\n                                            <tr>\n                                                <td class=\"p0-15\" style=\"padding: 0 30px;\">\n                                                    <table width=\"100%\" border=\"0\" cellspacing=\"0\"\n                                                           cellpadding=\"0\">\n                                                        <tr>\n                                                            <td class=\"h2-center\"\n                                                                style=\"color:#000000; font-family:'Playfair Display', Times, 'Times New Roman', serif; font-size:32px; line-height:36px; text-align:center; padding-bottom:20px;\">\n\n                                                            </td>\n                                                        </tr>\n                                                        {{$json.eList}}\n                                                        <!-- todo -->\n                                                    </table>\n                                                </td>\n                                            </tr>\n                                        </table>\n                                    </td>\n                                </tr>\n                            </table>\n\n                            <!-- END Event List -->\n\n                        </repeater>\n                        <!-- Footer -->\n                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                            <tr>\n                                <td class=\"p30-15-0\" bgcolor=\"#ffffff\"\n                                    style=\"border-radius: 0px 0px 20px 20px; padding: 70px 30px 0px 30px;\">\n                                    <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                                        <tr>\n                                            <td align=\"center\" class=\"p30-15\"\n                                                style=\"border-top: 1px solid #ebebeb; padding: 30px;\">\n                                                <table class=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"\n                                                       style=\"text-align:center;\">\n                                                    <tr>\n                                                        <th class=\"column-top\" width=\"180\"\n                                                            style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;\">\n                                                            <table width=\"100%\" border=\"0\" cellspacing=\"0\"\n                                                                   cellpadding=\"0\">\n                                                                <tr>\n                                                                    <td class=\"text-footer\" style=\"color:#5d5c5c; font-family:'Raleway', Arial,sans-serif; font-size:13px; line-height:22px; text-align:left;\">\n                                                                        <strong>Brochures</strong><br/>\n                                                                        <a href=\"#\" target=\"_blank\" class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">\n                                                                            <span class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">Demande</span>\n                                                                        </a>\n                                                                        <br/>\n                                                                        <a href=\"#\" target=\"_blank\" class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">\n                                                                            <span class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">Voir en ligne</span>\n                                                                        </a>\n                                                                        <br/>\n                                                                        <a href=\"#\" target=\"_blank\" class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">\n                                                                            <span class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">Guide d&#39;utilisation</span>\n                                                                        </a>\n                                                                    </td>\n                                                                </tr>\n                                                            </table>\n                                                        </th>\n                                                        <th class=\"column-empty\" width=\"20\"\n                                                            style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; direction:ltr;\"></th>\n                                                        <th class=\"column-top\" width=\"180\"\n                                                            style=\"font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;\">\n                                                            <table width=\"100%\" border=\"0\" cellspacing=\"0\"\n                                                                   cellpadding=\"0\">\n                                                                <tr>\n                                                                    <td class=\"text-footer\"\n                                                                        style=\"color:#5d5c5c; font-family:'Raleway', Arial,sans-serif; font-size:13px; line-height:22px; text-align:left;\">\n                                                                        <strong>Besoin d'aide</strong><br/>\n                                                                        <a href=\"#\" target=\"_blank\"\n                                                                           class=\"link-grey\"\n                                                                           style=\"color:#5d5c5c; text-decoration:none;\"><span\n                                                                                class=\"link-grey\"\n                                                                                style=\"color:#5d5c5c; text-decoration:none;\">FAQ</span></a><br/>\n                                                                        <a href=\"#\" target=\"_blank\" class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">\n                                                                            <span class=\"link-grey\" style=\"color:#5d5c5c; text-decoration:none;\">Contactez-nous</span>\n                                                                        </a><br/>\n                                                                    </td>\n                                                                </tr>\n                                                            </table>\n                                                        </th>\n                                                    </tr>\n                                                </table>\n                                            </td>\n                                        </tr>\n                                    </table>\n                                </td>\n                            </tr>\n                        </table>\n                        <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                            <tr>\n                                <td class=\"text-footer2 p30-15\"\n                                    style=\"padding: 30px 15px 50px 15px; color:#a9b6e0; font-family:'Raleway', Arial,sans-serif; font-size:12px; line-height:22px; text-align:center;\">\n                                    <multiline>Vous n'arrivez pas à visualiser ce mail?</multiline>\n                                    <a href=\"http://tpek.localhost/newsletter/id/{{$json.uuid}}\" class=\"link-white\"\n                                       style=\"color:#ffffff; text-decoration:none;\">voir dans le navigateur\n                                    </a>\n                                </td>\n                            </tr>\n                        </table>\n                        <!-- END Footer -->\n                    </td>\n                </tr>\n            </table>\n            <!-- END Main -->\n\n        </td>\n    </tr>\n</table>\n</body>\n\n</html>"
+      },
+      "id": "e67d180c-b42b-403c-85a5-c4b715545e45",
+      "name": "MailTemplate",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2480,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Événement à venir",
+        "height": 475.53488372093034,
+        "width": 582.3255813953492
+      },
+      "id": "b8746913-ce49-4482-9acd-00d023fdad81",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Sauvegarder le mail",
+        "height": 377.30232558139556,
+        "width": 391.81395348837225,
+        "color": 4
+      },
+      "id": "a3d19843-763d-48ad-8a1c-b74e6cbd1a2a",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "id": "554912a5-e178-4098-a204-fd95e25c7b7d",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://tpek.localhost/api/incoming",
+        "options": {}
+      },
+      "id": "9839ffe8-1b3c-425c-980c-952c6b49cbca",
+      "name": "incoming",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1220,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://tpek.localhost/api/savemail",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "uuid",
+              "value": "={{ $json.uuid }}"
+            },
+            {
+              "name": "userID",
+              "value": "={{ $json.userID }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.html }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c54715a-764d-4e03-b02e-722e408d1c93",
+      "name": "savemail",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2840,
+        780
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "062a4b40-5aca-4c82-834f-7eb3f2b7a2ff",
+      "name": "done",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "2ddd0ac6-ef4c-40c6-8f9d-4c696187b521",
+      "name": "LoopOverEvents",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1620,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"summary\": \"vous avez {{ $json.count }} evenement(s) à venir.\"\n}\n ",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "c149af4a-fe00-4af5-9dcb-5b5ba6b1acf9",
+      "name": "addSummary",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1900,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "1ab550f4-d3f9-457e-b296-d2d5f707fb44",
+      "name": "Combine",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2100,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  let eList = \"\";\n  for (let e of item.json.events) { \n    eRow = item.json.html;\n    date = new Date(e.startDate);\n    if (e.startDate != e.endDate && e.startTime.length != 0) {\n      secondDate = new Date(e.endDate);\n      eRow = eRow.replace('[day]', date.getDate()+\"-\"+secondDate.getDate());\n    } else{\n      eRow = eRow.replace('[day]', date.getDate());\n    }\n    eRow = eRow.replace('[title]', e.title);\n    eRow = eRow.replace('[month]', date.toLocaleString('fr', { month: 'short' }));\n    eRow = eRow.replace('[sHour]', e.startTime.length==0?\"[Toute la journée]\":e.startTime.slice(0, 5)+\" - \");\n    eRow = eRow.replace('[eHour]', e.endTime.slice(0, 5));\n    eRow = eRow.replace('[location]', e.location);\n    eList += eRow;\n  }\n\n   lst = {uuid:Date.now(), summary:item.json.summary, email:item.json.email, userID:item.json.id,eList};\n}\n\nreturn lst;\n"
+      },
+      "id": "218a24c1-2141-4df5-81cf-b8fcb8eb9e77",
+      "name": "generateMsg",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2280,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "be99e361-6a84-4c25-985f-4ea6a194d9c0",
+      "name": "CombineMsgAndUser",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2640,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "=contact@baldazi.com",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Newletters",
+        "html": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "12a7e167-d94c-4da5-834e-768991dac40f",
+      "name": "SendNewsletter",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2920,
+        1200
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "qidy4uYU2MY3srwd",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Générer le mail",
+        "height": 415.03125430953423,
+        "width": 979.5145740613045,
+        "color": 6
+      },
+      "id": "f1cc6bdf-f4c6-454d-b7e3-51f31e143377",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        840
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "EventList": {
+      "main": [
+        [
+          {
+            "node": "Combine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "CombineMsgAndUser",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "MailTemplate": {
+      "main": [
+        [
+          {
+            "node": "CombineMsgAndUser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "incoming",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "incoming": {
+      "main": [
+        [
+          {
+            "node": "LoopOverEvents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "savemail": {
+      "main": [
+        [
+          {
+            "node": "done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LoopOverEvents": {
+      "main": [
+        [],
+        [
+          {
+            "node": "EventList",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "addSummary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "addSummary": {
+      "main": [
+        [
+          {
+            "node": "Combine",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Combine": {
+      "main": [
+        [
+          {
+            "node": "generateMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "generateMsg": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MailTemplate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CombineMsgAndUser": {
+      "main": [
+        [
+          {
+            "node": "savemail",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SendNewsletter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendNewsletter": {
+      "main": [
+        [
+          {
+            "node": "LoopOverEvents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "bc878e76-1930-4bd1-93ba-69056d18c274",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6178e31b92262345ecf2f0a17159959f45573502caa21e54a04b0826136c197"
+  },
+  "id": "Pr7ONLw684PXMykN",
+  "tags": []
+}
