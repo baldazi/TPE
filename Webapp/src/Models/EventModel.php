@@ -10,24 +10,104 @@ class EventModel extends Model
     public function findAllXUser()
     {
         $req = "
-            SELECT 
-                Event.id AS eventID,
-                Event.startDate,
-                Event.startTime,
-                Event.endDate,
-                Event.endTime,
-                Event.title,
-                Event.location,
-                Event.description,
-                User.id AS UserID,
-                User.pseudo,
-                User.email
-            FROM Event
-            LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
-            LEFT JOIN User ON UserEvent.userID = User.id;
-            ";
+        SELECT 
+            Event.id AS eventID,
+            Event.startDateTime,
+            Event.endDateTime,
+            Event.title,
+            Event.location,
+            Event.description,
+            User.id AS userID,
+            User.pseudo,
+            User.email
+        FROM Event
+        LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
+        LEFT JOIN User ON UserEvent.userID = User.id;
+        ";
+
         $tab = $this->q($req);
         return $tab->fetchAll();
+    }
+
+    public function findAllXUserNextWeek()
+    {
+        $req = "
+        SELECT 
+            Event.id AS eventID,
+            Event.startDateTime,
+            Event.endDateTime,
+            Event.title,
+            Event.location,
+            Event.description,
+            User.id AS userID,
+            User.pseudo,
+            User.email
+        FROM Event
+        LEFT JOIN UserEvent ON Event.id = UserEvent.eventID
+        LEFT JOIN User ON UserEvent.userID = User.id
+        WHERE 
+            (substr(Event.startDateTime, 1, 10) >= DATE('now', '+1 day') 
+            AND substr(Event.startDateTime, 1, 10) < DATE('now', '+8 days'))
+        OR
+            (substr(Event.startDateTime, 1, 8) >= strftime('%Y%m%d', DATE('now', '+1 day')) 
+            AND substr(Event.startDateTime, 1, 8) < strftime('%Y%m%d', DATE('now', '+8 days')))
+        ORDER BY Event.startDateTime ASC;
+    ";
+        $tab = $this->q($req);
+        // Récupération des résultats
+        $results = $tab->fetchAll();
+
+        // Fonction pour séparer date et heure avec formatage
+        function formatDateTime($dateTime)
+        {
+            $date = substr($dateTime, 0, 8);
+            $time = strlen($dateTime) > 8 ? substr($dateTime, 9) : '';
+
+            // Reformater la date
+            $formattedDate = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-' . substr($date, 6, 2);
+
+            // Reformater l'heure si présente
+            if ($time !== '') {
+                $formattedTime = substr($time, 0, 2) . ':' . substr($time, 2, 2) . ':' . substr($time, 4, 2);
+            } else {
+                $formattedTime = '';
+            }
+
+            return [$formattedDate, $formattedTime];
+        }
+
+        // Traitement pour structurer les événements par utilisateur
+        $usersEvents = [];
+
+        foreach ($results as $result) {
+            $userID = $result->userID;
+            if (!isset($usersEvents[$userID])) {
+                $usersEvents[$userID] = (object)[
+                    'id' => $userID,
+                    'email' => $result->email,
+                    'count' => 0,
+                    'events' => []
+                ];
+            }
+
+            list($startDate, $startTime) = formatDateTime($result->startDateTime);
+            list($endDate, $endTime) = formatDateTime($result->endDateTime);
+
+            $usersEvents[$userID]->events[] = (object)[
+                'title' => $result->title,
+                'startDate' => $startDate,
+                'startTime' => $startTime,
+                'endDate' => $endDate,
+                'endTime' => $endTime,
+                'location' => $result->location,
+                'description' => $result->description
+            ];
+
+            $usersEvents[$userID]->count++;
+        }
+
+        // Convertir les résultats en une liste
+        return array_values($usersEvents);
     }
 
 

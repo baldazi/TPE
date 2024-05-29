@@ -33,7 +33,7 @@ class IcsParser
         $lines = preg_split("/[\n]/", $this->fileText);
 
         if (stripos($lines[0], 'BEGIN:VCALENDAR') === false) {
-            return 'Error: Not a VCALENDAR file';
+            return false;
         }
 
         $type = '';
@@ -246,16 +246,15 @@ class IcsParser
     public function getAllEvent(){
         $eventArray = [];
         foreach($this->calendar["VEVENT"] as $event){
-
-            $startDateTime = $this->splitDateTime($event["DTSTART"]);
-            $endDateTime = $this->splitDateTime($event["DTEND"]);
-            $e["title"] = $event["SUMMARY"]??"";
-            $e["startDate"] = $startDateTime["date"]??"";
-            $e["endDate"] = $endDateTime["date"]??"";
-            $e["startTime"] = $startDateTime["time"]??"";
-            $e["endTime"] = $endDateTime["time"]??"";
+            $e["uid"] = $event["UID"];
+            $e["startDateTime"] = $event["DTSTART"]??"";
+            $e["endDateTime"] = $event["DTEND"]??"";
+            $e["title"] = $event["SUMMARY"];
             $e["location"] = $event["LOCATION"]??"";
+            $e["status"] = $event["STATUS"];
             $e["description"] = $event["DESCRIPTION"]??"";
+            $e["created"] = $event["CREATED"];
+            $e["lastModified"] = $event["LAST-MODIFIED"];
             $eventArray[] = $e;
         }
         return $eventArray;

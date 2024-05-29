@@ -43,13 +43,11 @@ class CalendarController extends Controller
                 exit;
             }
 
-            $parser->parse("$url");
-
-            /*if ($parser->isEmpty()) {
+            if (!$parser->parse("$url")) {
                 //todo
                 echo "lien invalid";
                 exit;
-            }*/
+            }
 
             $userID = $_SESSION["user"]["id"];
             $colorID = $_POST['color_id'];

@@ -16,8 +16,17 @@ class Controller{
 
     }
 
-    function json(array $data){
+    function json($data){
         header("Content-Type: application/json");
         echo json_encode($data);
+    }
+
+    function getPost()
+    {
+        // Prend les données brutes de la requête
+        $json = file_get_contents('php://input');
+        // Le convertit en objet PHP
+        $data = json_decode($json, true);
+        return $data;
     }
 }
