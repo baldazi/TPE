@@ -31,8 +31,9 @@ class MainController extends Controller
             if (md5($password) === $user->password) {
                 unset($_SESSION['error']);
                 $calendars = $calendarModel->findFor($user->id);
+                $colorPalette = ColorPaletteModel::getColorNames();
                 $sessionVars = ["calendars"=>$calendars ,"nbCalendars" => count($calendars),
-                    "skin" => $user->skin, "avatarID" => $user->avatarID];
+                    "skin" => $user->skin, "avatarID" => $user->avatarID, "colorPalette"=>$colorPalette];
                 $user->setSession($sessionVars);
                 header('Location:/');
                 exit;
@@ -46,10 +47,11 @@ class MainController extends Controller
         if (Form::validate($_SESSION, ["user"])) {
             $eventModel = new EventModel;
             $events = $eventModel->findFor($_SESSION["user"]["id"]);
-            $colorPalette = ColorPaletteModel::getColorNames();
+            $stats =  $eventModel->countFor($_SESSION["user"]["id"]) ;
         }
 
-        $this->render('main/index.tpl', isset($events) ? compact("events", "colorPalette") : []);
+
+        $this->render('main/index.tpl', isset($events) ? compact("events", "stats") : []);
     }
 
     public function register()

@@ -219,7 +219,7 @@ class IcsParser
 
     public function getEventList()
     {
-        return $this->calendar['VEVENT'];
+        return $this->calendar['VEVENT']??[];
     }
 
     public function getTodoList()

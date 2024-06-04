@@ -119,6 +119,10 @@ class ApiController extends Controller
         $getData = $this->getPost();
         $parser->parse($getData["url"]);
         $events = $parser->getEventList();
+        if(empty($events)) {
+            $this->json(["content"=>"empty"]);
+            exit;
+        }
         $eventList = [];
         foreach ($events as $event) {
             $event["calendarID"] = $getData["id"];

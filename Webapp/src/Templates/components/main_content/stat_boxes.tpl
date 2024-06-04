@@ -2,54 +2,38 @@
 <div class="row">
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>9</h3>
-                <p>Evenements à venir</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-    </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>3</h3>
+        <div class="card bg-green">
+            <div class="card-body">
+                <h2>{$smarty.session.user.nbCalendars}</h2>
                 <p>Soubscription</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>15</h3>
-                <p>Evenements précedents</p>
+        <div class="card bg-aqua">
+            <div class="card-body">
+                <h2>{$stats->upcoming}</h2>
+                <p>Evenements à venir</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
-        </div>
+           </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-red">
-            <div class="inner">
-                <h3>65</h3>
+        <div class="card bg-yellow">
+            <div class="card-body">
+                <h2>{$stats->previous}</h2>
+                <p>Evenements passés</p>
+            </div>
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6 mb-2">
+        <!-- small box -->
+        <div class="card bg-red">
+            <div class="card-body">
+                <h2>{$stats->total}</h2>
                 <p>Evenements totals</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
 </div>

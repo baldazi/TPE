@@ -129,4 +129,27 @@ class EventModel extends Model
 
         return $this->q($query, [$userId])->fetchAll();
     }
+
+    public function countFor($userId)
+    {
+        $query =  "SELECT 
+                SUM(CASE WHEN SUBSTR(e.startDateTime, 1, 8) || CASE WHEN LENGTH(e.startDateTime) = 8 THEN 'T000000' ELSE SUBSTR(e.startDateTime, 9) END > ? THEN 1 ELSE 0 END) AS upcoming,
+                SUM(CASE WHEN SUBSTR(e.endDateTime, 1, 8) || CASE WHEN LENGTH(e.endDateTime) = 8 THEN 'T000000' ELSE SUBSTR(e.endDateTime, 9) END <= ? THEN 1 ELSE 0 END) AS previous,
+                COUNT(*) AS total
+            FROM 
+                User u
+            JOIN 
+                UserEvent ue ON u.id = ue.userID
+            JOIN 
+                Event e ON ue.eventID = e.id
+            WHERE 
+                u.id = ?";
+
+        // Récupérer la date et l'heure actuelles au format approprié
+        $now = date('Ymd\THis');
+
+        // Exécution de la requête avec les paramètres
+        return $this->q($query, [$now, $now, $userId])->fetch();
+    }
+
 }

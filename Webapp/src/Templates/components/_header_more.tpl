@@ -64,7 +64,8 @@
                 <img src="/assets/img/avatar/1.png" class="rounded-circle" alt="User Image"/>
                 <p>
                     <b>{$smarty.session.user.firstname} {$smarty.session.user.lastname}</b>
-                    <small>Member depuis Nov. 2012</small>
+                    <small>Member depuis {$smarty.session.user.createdAt|date_format:"%b. %Y"}
+                    </small>
                 </p>
             </li>
             <!-- Menu Footer-->

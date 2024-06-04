@@ -12,7 +12,7 @@
             <tr>
                 <th scope="col"></th>
                 <th scope="col"><i class="fa-solid fa-arrow-down-1-9"></i></th>
-                <th scope="col" class="th-lg">Nom</th>
+                <th scope="col" class="th-lg">Titre</th>
                 <th scope="col">Début</th>
                 <th scope="col">Fin</th>
                 <th scope="col">Lieu</th>
@@ -21,17 +21,16 @@
             <tbody class="table-group-divider">
             {foreach from=$events item=event key=i}
                 <tr>
-                    <th scope="row"  class="align-middle"><i class="fa-solid fa-square text-{$colorPalette[$event->colorID]}"></i></th>
+                    <th scope="row"  class="align-middle"><i class="fa-solid fa-square text-{$smarty.session.user.colorPalette[$event->colorID]}"></i></th>
                     <th scope="row"  class="align-middle">
                         {$i+1}
                     </th>
                     <td  class="align-middle">{$event->title}</td>
                     <td class="align-middle">
-                        <span>{$event->startDate|date_format:"%d/%m/%Y"}</span>
-                        <br/> <span class="ms-3">{$event->startTime|date_format:"%H:%M"}</span>
+                        <span>{$event->startDateTime}</span>
                     </td>
                     <td  class="align-middle">
-                        {$event->endDate|date_format:"%d/%y/%Y"} <br/> {$event->endTime|date_format:"%H:%M"}
+                        {$event->endDateTime}
                     </td>
                     <td  class="align-middle">
                         {$event->location}
