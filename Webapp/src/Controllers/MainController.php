@@ -33,7 +33,7 @@ class MainController extends Controller
                 $calendars = $calendarModel->findFor($user->id);
                 $colorPalette = ColorPaletteModel::getColorNames();
                 $sessionVars = ["calendars"=>$calendars ,"nbCalendars" => count($calendars),
-                    "skin" => $user->skin, "avatarID" => $user->avatarID, "colorPalette"=>$colorPalette];
+                    "skin" => $user->skin, "themeID"=>$user->themeID, "avatarID" => $user->avatarID, "colorPalette"=>$colorPalette];
                 $user->setSession($sessionVars);
                 header('Location:/');
                 exit;
@@ -111,5 +111,16 @@ class MainController extends Controller
     public function apropos()
     {
         $this->render("main/apropos.tpl");
+    }
+
+    public function picktheme()
+    {
+        if(Form::validate($_POST, ["color-id"])) {
+            $idColor = strip_tags($_POST['color-id']);
+            var_dump($_SESSION["user"]);
+            $userModel = new UserModel;
+            if($userModel->update($_SESSION["user"]["id"], ["themeID" => $idColor]))
+                $userModel->updateSession(["themeID"=>$idColor, "skin"=>UserThemeModel::getThemes()[$idColor]]);
+        }
     }
 }

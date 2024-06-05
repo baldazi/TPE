@@ -7,3 +7,27 @@ function updateColorPicked(colorId, color) {
     // Ajouter la classe bg-{color} correspondante
     indicator.classList.add("bg-" + color);
 }
+
+function updateSkin(color, id) {
+
+    document.body.className = `skin-${color}`;
+
+    const formData = new FormData();
+    formData.append('color-id', id);
+
+    fetch('/main/picktheme', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+
+
+

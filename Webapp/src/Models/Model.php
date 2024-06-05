@@ -84,7 +84,7 @@ class Model extends Db
         $this->q($sql, $valeurs);
     }
 
-    public function update(int $id, array $model): void
+    public function update(int $id, array $model)
     {
         $champs = [];
         $valeurs = [];
@@ -95,7 +95,7 @@ class Model extends Db
         $valeurs[] = $id;
         $lst_champs = implode(', ', $champs);
         $sql = "UPDATE $this->table SET $lst_champs WHERE id = ?";
-        $this->q($sql, $valeurs);
+        return $this->q($sql, $valeurs);
     }
 
     public function delete(array $criteres)
