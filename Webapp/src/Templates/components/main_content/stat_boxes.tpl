@@ -1,55 +1,43 @@
 {*-- Small boxes (Stat box) ---*}
-<div class="row">
-    <div class="col-lg-3 col-xs-6">
+<div class="d-flex flex-column flex-md-row justify-content-md-around mb-3">
+    <div class="local-mw-400">
         <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>9</h3>
-                <p>Evenements à venir</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
-    </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>3</h3>
+        <div class="card bg-green">
+            <div class="card-body">
+                <h2>{$smarty.session.user.nbCalendars}</h2>
                 <p>Soubscription</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="local-mw-400">
         <!-- small box -->
-        <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>15</h3>
-                <p>Evenements précedents</p>
+        <div class="card bg-aqua">
+            <div class="card-body">
+                <h2>
+                    {if $stats->upcoming}{$stats->upcoming}{else}Aucun{/if}
+                </h2>
+                <p>Evénéments à venir</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-person-add"></i>
+           </div>
+    </div><!-- ./col -->
+    <div class="local-mw-400">
+        <!-- small box -->
+        <div class="card bg-yellow">
+            <div class="card-body">
+                <h2>
+                {if $stats->previous}{$stats->previous}{else}Aucun{/if}
+                </h2>
+                <p>Evénéments passés</p>
             </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class=" local-mw-400">
         <!-- small box -->
-        <div class="small-box bg-red">
-            <div class="inner">
-                <h3>65</h3>
-                <p>Evenements totals</p>
+        <div class="card bg-red">
+            <div class="card-body">
+                <h2>{$stats->total}</h2>
+                <p>Evénéments totals</p>
             </div>
-            <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">Plus d'info<i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
 </div>

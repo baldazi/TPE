@@ -5,14 +5,15 @@ namespace App\Controllers;
 use App\Core\Form;
 use App\Core\IcsParser;
 use App\Models\EventModel;
+use App\Models\UserEventModel;
 use App\Models\UserModel;
 
 class EventController extends Controller{
 
     public function index(){
 
-        $model = new EventModel;
-        $events = $model->findAll();
+        $model = new UserEventModel;
+        $events = $model->findFor($_SESSION["user"]["id"]);
         $this->render('event/index.tpl', compact('events'));
     }
 

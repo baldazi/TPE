@@ -10,10 +10,9 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="/assets/img/avatar/1.png" class="img-fluid" alt="user profil" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Alexander Pierce</h4>
-                                <p class="local-gray-text mb-1"><span class="bg-black p-2 rounded">@apieres77</span></p>
-                                <p class="text-muted font-size-sm">Member depuis Nov. 2012</p>
-                                <button class="btn btn-secondary">Deconnexion</button>
+                                <h4 class="mb-4">{$smarty.session.user.firstname} {$smarty.session.user.lastname}</h4>
+                                <p class="text-muted font-size-sm">Member depuis {$smarty.session.user.createdAt|date_format:"%b. %Y"}</p>
+                                <a href="/main/logout" class="btn btn-secondary">Deconnexion</a>
                             </div>
                         </div>
                     </div>
@@ -28,7 +27,7 @@
                                 <h6 class="mb-0">Identifiant</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                apieres77
+                                {$smarty.session.user.pseudo}
                             </div>
                         </div>
                         <hr>
@@ -37,7 +36,7 @@
                                 <h6 class="mb-0">Nom</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Pierce
+                                {$smarty.session.user.lastname}
                             </div>
                         </div>
                         <hr>
@@ -46,7 +45,7 @@
                                 <h6 class="mb-0">Prenom</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Alexender
+                                {$smarty.session.user.firstname}
                             </div>
                         </div>
                         <hr>
@@ -55,7 +54,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                alexenderpi77@email.com
+                                {$smarty.session.user.email}
                             </div>
                         </div>
                         <hr>

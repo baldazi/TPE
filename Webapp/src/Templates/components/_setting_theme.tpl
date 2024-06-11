@@ -5,7 +5,7 @@
     <hr>
     <div class="d-flex flex-wrap justify-content-center gap-3">
         {foreach from=$themes item=skin key=i}
-            {include file="./setting_content/skin_picker.tpl" skin={$skin} id={$i}}
+            {include file="./setting_content/skin_picker.tpl" skin=$skin id=$i}
         {/foreach}
     </div>
 </div>

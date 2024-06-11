@@ -1,6 +1,6 @@
 {extends file="../base.tpl"}
 
-{block name="title"}Accueil A Pierce!{/block}
+{block name="title"}Theme{/block}
 {block name="main-header-title"}Personalisation{/block}
 {block name="page-indicator-id"}Theme{/block}
 {block name="page-content"}

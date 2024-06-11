@@ -14,6 +14,7 @@ class UserModel extends Model
         $_SESSION['user']['lastname'] = $this->lastname;
         $_SESSION['user']['firstname'] = $this->firstname;
         $_SESSION['user']['pseudo'] = $this->pseudo;
+        $_SESSION['user']['createdAt'] = $this->createdAt;
 
         foreach ($session as $key => $value) {
             $_SESSION['user'][$key] = $value;

@@ -31,9 +31,9 @@
             <span class="badge text-bg-danger float-end me-3">{$smarty.session.user.nbCalendars}</span>
         </a>
         <ul class="treeview-menu collapse" id="collapseSoubscribe">
-            <li><a href="#calendar"><i class="fa-regular fa-circle" style="color:#ad8d0d"></i>Vacances</a></li>
-            <li><a href="#calendar"><i class="fa-regular fa-circle" style="color: #0d6aad"></i>Divers</a></li>
-            <li><a href="#calendar"><i class="fa-regular fa-circle" style="color: #980dad"></i>Enseignements</a></li>
+            {foreach from=$smarty.session.user.calendars item=cal}
+            <li><a href="#calendar"><i class="fa-regular fa-circle text-{{$smarty.session.user.colorPalette[$cal->colorID]}}"></i> {$cal->name}</a></li>
+            {/foreach}
         </ul>
     </li>
     {* 5. Paramètres *}

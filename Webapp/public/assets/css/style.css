@@ -89,7 +89,9 @@ body{
 .local-mw-300{
     min-width: 300px;
 }
-
+.local-mw-400{
+    min-width: 350px;
+}
 .local-gray-text{
     font-size: 15px;
     color: #555555;
@@ -301,6 +303,11 @@ body{
     -o-transform: rotate(30deg);
     transform: rotate(30deg);
 }
+
+.fc .fc-daygrid-day-number, .fc .fc-col-header-cell-cushion {
+    text-decoration: none;
+    color: #1d1d1d;
+}
 /** bootstrap tweaks*/
 .navbar {padding: 0}
 .list-group-item {padding: 0}
@@ -308,3 +315,6 @@ body{
 .navbar-brand{margin-right: 0}
 .dropdown-menu{padding: 0; border-radius: initial}
 .list-group-item:first-child, .list-group-item:last-child{border-radius: initial}
+.placeholder{
+    cursor: pointer;
+}

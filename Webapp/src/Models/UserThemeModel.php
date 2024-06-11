@@ -27,12 +27,12 @@ class UserThemeModel
     public static function getColors()
     {
         return [
-            1 => "purple",
-            2 => "blue",
-            3 => "yellow",
+            1 => "blue",
+            2 => "black",
+            3 => "purple",
             4 => "green",
             5 => "red",
-            6 => "black",
+            6 => "yellow",
         ];
     }
 }

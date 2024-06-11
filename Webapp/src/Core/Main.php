@@ -6,12 +6,6 @@ use App\Controllers\MainController;
 
 class Main
 {
-    private function notFoundPage()
-    {
-        http_response_code(404);
-        echo "page inexistante";
-    }
-
     public function start()
     {
         session_start();
@@ -51,6 +45,9 @@ class Main
                 $controller = new MainController;
                 $controller->$route();
             } elseif (class_exists($controller)) {
+                if ($controller!="\App\Controllers\ApiController" &&  $controller!="\App\Controllers\NewsletterController"&& !isset($_SESSION["user"])){
+                    header("Location:/");
+                }
 
                 $controller = new $controller;
 
@@ -61,10 +58,12 @@ class Main
                     else
                         $controller->$action();
                 } else {
-                    $this->notFoundPage();
+                    $controller = new MainController;
+                    $controller->notFoundPage();
                 }
             } else {
-                $this->notFoundPage();
+                $controller = new MainController;
+                $controller->notFoundPage();
             }
         } else {
             //on instancie le controller par defaut

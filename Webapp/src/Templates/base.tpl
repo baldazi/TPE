@@ -17,11 +17,12 @@
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico"/>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    {block name="topscript"}{/block}
     <title>{block name="title"}bienvenue !{/block}</title>
 
 </head>
 
-<body class="{$smarty.session.user.skin|default:"skin-purple"}">
+<body class="{$smarty.session.user.skin|default:""}">
 <header class="main-header">
     <nav class="navbar navbar-expand-lg header-nav">
         <div class="container-fluid">
@@ -32,10 +33,6 @@
             {block name="header-more"}
                 {if isset($smarty.session.user)}
                     {include file="./components/_header_more.tpl"}
-                {else}
-                    <div class="d-flex">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
                 {/if}
             {/block}
         </div>
