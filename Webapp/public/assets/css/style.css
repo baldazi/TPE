@@ -89,7 +89,9 @@ body{
 .local-mw-300{
     min-width: 300px;
 }
-
+.local-mw-400{
+    min-width: 350px;
+}
 .local-gray-text{
     font-size: 15px;
     color: #555555;
@@ -300,6 +302,11 @@ body{
     -ms-transform: rotate(30deg);
     -o-transform: rotate(30deg);
     transform: rotate(30deg);
+}
+
+.fc .fc-daygrid-day-number, .fc .fc-col-header-cell-cushion {
+    text-decoration: none;
+    color: #1d1d1d;
 }
 /** bootstrap tweaks*/
 .navbar {padding: 0}

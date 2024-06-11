@@ -31,7 +31,7 @@
 </div>
 
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar/core/locales/fr.global.min.js'></script>
+
 <!-- terst -->
 <script>
     const formatDateTime = (date) =>
@@ -74,15 +74,15 @@
                 {foreach from=$events item=e}
                 {
                     "id": "{$e->eventID}",
-                    title: "{$e->title}",
+                    title: `{$e->title}`,
                     start: "{$e->startDateTime}",
                     end: "{$e->endDateTime}",
                     color: "{$e->colorHexValue}",
                     extendedProps: {
                         created: "{$e->created}",
                         lastModified: "{$e->lastModified}",
-                        description: "{$e->description}",
-                        location: "{$e->location}",
+                        description: `{$e->description}`,
+                        location: `{$e->location}`,
                         status: "{$e->status}",
                         calendarID: "{$e->calendarID}"
                     },

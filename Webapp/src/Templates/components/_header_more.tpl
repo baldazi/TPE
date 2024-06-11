@@ -1,12 +1,13 @@
 {*-- main Sidebar toggle button--*}
-<a href="#" class="nav-link sidebar-toggle me-auto" role="button" data-bs-toggle="offcanvas"
+<a href="#" class="nav-link sidebar-toggle me-auto d-sm-block d-md-none" role="button" data-bs-toggle="offcanvas"
    data-bs-target="#leftSidebar"
    aria-controls="leftSidebar">
     <i class="fa-solid fa-bars"></i>
 </a>
 {* profile *}
 <ul class="nav navbar-nav mb-lg-0">
-    <li class="nav-item dropdown">
+
+    {*<li class="nav-item dropdown">
         <a class="nav-link position-relative" href="#" id="headerDropdownTask" role="button" data-bs-toggle="dropdown"
            aria-expanded="false">
             <span class="p-2">
@@ -14,7 +15,7 @@
                 <span class="position-absolute top-0 start-50 translate-middle-y badge text-bg-danger mt-2">9</span>
             </span>
         </a>
-        {*-- Tasks: style can be found in dropdown.less --*}
+        <!-- Tasks: style can be found in dropdown.less -->
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="headerDropdownTask">
             <li class="text-center fw-bold local-gray-text py-2">9 evenements à venir</li>
             <li>
@@ -50,7 +51,7 @@
                 <a href="/event" class="text-center dropdown-item local-gray-text">Voir tout</a>
             </li>
         </ul>
-    </li>
+    </li>*}
 
     {*-- User Account: style can be found in dropdown.less --*}
     <li class="nav-item dropdown user user-menu">

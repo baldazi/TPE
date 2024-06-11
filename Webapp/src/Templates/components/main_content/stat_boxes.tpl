@@ -1,6 +1,6 @@
 {*-- Small boxes (Stat box) ---*}
-<div class="row">
-    <div class="col-lg-3 col-xs-6">
+<div class="d-flex flex-column flex-md-row justify-content-md-around mb-3">
+    <div class="local-mw-400">
         <!-- small box -->
         <div class="card bg-green">
             <div class="card-body">
@@ -9,30 +9,34 @@
             </div>
         </div>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="local-mw-400">
         <!-- small box -->
         <div class="card bg-aqua">
             <div class="card-body">
-                <h2>{$stats->upcoming}</h2>
-                <p>Evenements à venir</p>
+                <h2>
+                    {if $stats->upcoming}{$stats->upcoming}{else}Aucun{/if}
+                </h2>
+                <p>Evénéments à venir</p>
             </div>
            </div>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="local-mw-400">
         <!-- small box -->
         <div class="card bg-yellow">
             <div class="card-body">
-                <h2>{$stats->previous}</h2>
-                <p>Evenements passés</p>
+                <h2>
+                {if $stats->previous}{$stats->previous}{else}Aucun{/if}
+                </h2>
+                <p>Evénéments passés</p>
             </div>
         </div>
     </div><!-- ./col -->
-    <div class="col-lg-3 col-xs-6 mb-2">
+    <div class=" local-mw-400">
         <!-- small box -->
         <div class="card bg-red">
             <div class="card-body">
                 <h2>{$stats->total}</h2>
-                <p>Evenements totals</p>
+                <p>Evénéments totals</p>
             </div>
         </div>
     </div><!-- ./col -->

@@ -123,4 +123,9 @@ class MainController extends Controller
                 $userModel->updateSession(["themeID"=>$idColor, "skin"=>UserThemeModel::getThemes()[$idColor]]);
         }
     }
+
+    public function notFoundPage()
+    {
+        $this->render("main/notFound.tpl");
+    }
 }
